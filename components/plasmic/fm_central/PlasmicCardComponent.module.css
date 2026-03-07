@@ -1,0 +1,83 @@
+.cardContainer {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background: #f04949;
+  flex-shrink: 1;
+  flex-grow: 0;
+  position: relative;
+  padding: 8px;
+}
+.cardContent {
+  display: flex;
+  position: sticky;
+  width: 150px;
+  height: 250px;
+  max-width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  background: #eddddd;
+  flex-direction: column;
+  padding: 8px;
+}
+.name {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  text-align: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  min-width: 0;
+}
+.type {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  text-align: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  min-width: 0;
+}
+.cardStyleText {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  text-align: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  min-width: 0;
+}
+.attackValue {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  text-align: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  min-width: 0;
+}
+.defenseValue {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  text-align: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  min-width: 0;
+}
