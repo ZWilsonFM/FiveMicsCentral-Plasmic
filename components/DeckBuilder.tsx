@@ -4,52 +4,41 @@ import * as React from "react";
 import {
   PlasmicDeckBuilder,
   DefaultDeckBuilderProps
-} from "./plasmic/fm_central/PlasmicDeckBuilder";
-
-import { useDeckState } from '@/hooks/useDeckState';
-import { useCards } from '@/hooks/useCards';
-import { useCardFilters } from '@/hooks/useCardFilters';
-import { useDeckStats } from '@/hooks/useDeckStats';
+} from "./plasmic/five_mics_central/PlasmicDeckBuilder";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import PlasmicCardComponent from "./plasmic/fm_central/PlasmicCardComponent";
-import PlasmicCardFilterRow from "./plasmic/fm_central/PlasmicCardFilterRow";
 
+// Your component props start with props for variants and slots you defined
+// in Plasmic, but you can add more here, like event handlers that you can
+// attach to named nodes in your component.
+//
+// If you don't want to expose certain variants or slots as a prop, you can use
+// Omit to hide them:
+//
+// interface DeckBuilderProps extends Omit<DefaultDeckBuilderProps, "hideProps1"|"hideProp2"> {
+//   // etc.
+// }
+//
+// You can also stop extending from DefaultDeckBuilderProps altogether and have
+// total control over the props for your component.
 export interface DeckBuilderProps extends DefaultDeckBuilderProps {}
 
 function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
+  // Use PlasmicDeckBuilder to render this component as it was
+  // designed in Plasmic, by activating the appropriate variants,
+  // attaching the appropriate event handlers, etc.  You
+  // can also install whatever React hooks you need here to manage state or
+  // fetch data.
+  //
+  // Props you can pass into PlasmicDeckBuilder are:
+  // 1. Variants you want to activate,
+  // 2. Contents for slots you want to fill,
+  // 3. Overrides for any named node in the component to attach behavior and data,
+  // 4. Props to set on the root node.
+  //
+  // By default, we are just piping all DeckBuilderProps here, but feel free
+  // to do whatever works for you.
 
-    const { cards, isLoading } = useCards();
-    const { deck, addCard, removeCard, setDeckName } = useDeckState();
-    const {
-      filters,
-      setSearch,
-      toggleType,
-      toggleStyle,
-      toggleCost,
-      filteredCards,
-      availableTypes,
-      availableStyles,
-      availableCosts,
-    } = useCardFilters(cards);
-    const stats = useDeckStats(deck.cards);
-
-
-  if (isLoading) {
-    return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h2>Loading cards...</h2>
-        <p>Fetching card data from Supabase</p>
-      </div>
-    );
-  }
-
-
-  
-  return <PlasmicDeckBuilder availableCardsContainer={{
-    children: filteredCards.slice(0,100).map((card) => 
-      <PlasmicCardComponent cardName={card.name} cardStyle={card.styles[0]} 
-                            cardType={card.type[0]} atkValue={card.atk?.toString()} defValue={card.def?.toString()}/>)}} 
-    root={{ ref }} {...props} />;
+  return <PlasmicDeckBuilder root={{ ref }} {...props} />;
 }
 
 const DeckBuilder = React.forwardRef(DeckBuilder_);

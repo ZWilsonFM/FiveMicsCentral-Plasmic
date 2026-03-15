@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicTextField,
   DefaultTextFieldProps
-} from "./plasmic/fm_central/PlasmicTextField";
+} from "./plasmic/five_mics_central/PlasmicTextField";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
