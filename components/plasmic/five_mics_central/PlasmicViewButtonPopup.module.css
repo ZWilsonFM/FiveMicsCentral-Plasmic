@@ -1,0 +1,52 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+  background: none;
+  position: relative;
+  padding: 0px;
+}
+.viewButton:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 125px;
+  height: 35px;
+  flex-shrink: 0;
+}
+.svg {
+  position: relative;
+  height: 1em;
+}
+.text__sf06E {
+  white-space: pre;
+  width: 100%;
+  text-align: center;
+  min-width: 0;
+}
+.svg__mYCxO {
+  position: relative;
+  height: 1em;
+}
+.viewPopup {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 170px;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--token-_XLOY8y1n-eS);
+  left: auto;
+  top: 40px;
+  z-index: 5;
+  right: 0px;
+  box-shadow: none;
+  border-radius: var(--token-m_ncsQsYKb7X);
+  padding: 8px 12px;
+}
+.combobox:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
