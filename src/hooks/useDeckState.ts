@@ -49,10 +49,6 @@ interface DeckState {
    */
   setFormat: (format: string) => void;
 
-  /**
-   * Set the leader card (removes existing leader first)
-   */
-  setLeader: (card: Card) => void;
 
   /**
    * Clear all cards from the deck
@@ -142,12 +138,14 @@ export const useDeckState = create<DeckState>((set, get) => ({
         newCards[existingCardIndex] = {
           ...existingCard,
           quantity: existingCard.quantity + 1,
+          preview_image: card.preview_image
         };
       } else {
         // New card - add with quantity 1
         const deckCard: DeckCard = {
           ...card,
           quantity: 1,
+          preview_image: card.preview_image
         };
         newCards = [...state.deck.cards, deckCard];
       }
@@ -241,34 +239,6 @@ export const useDeckState = create<DeckState>((set, get) => ({
       const newDeck = {
         ...state.deck,
         format,
-        updated_at: new Date(),
-      };
-
-      return {
-        deck: newDeck,
-        hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
-      };
-    });
-  },
-
-  setLeader: (card: Card) => {
-    set((state) => {
-      // Remove existing leader
-      const cardsWithoutLeader = state.deck.cards.filter(
-        (c) => c.type !== 'Leader'
-      );
-
-      // Add new leader
-      const leaderCard: DeckCard = {
-        ...card,
-        quantity: 1,
-      };
-
-      const newCards = [...cardsWithoutLeader, leaderCard];
-
-      const newDeck = {
-        ...state.deck,
-        cards: newCards,
         updated_at: new Date(),
       };
 

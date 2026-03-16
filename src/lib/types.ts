@@ -38,6 +38,8 @@ export interface Card {
   set_id_code: string;
   /** Card number within the set */
   set_number: number;
+
+  preview_image: string | undefined;
 }
 
 /**
@@ -46,6 +48,7 @@ export interface Card {
 export interface DeckCard extends Card {
   /** Number of copies in the deck */
   quantity: number;
+  preview_image: string | undefined;
 }
 
 /**
