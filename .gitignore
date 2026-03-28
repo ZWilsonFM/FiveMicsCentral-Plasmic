@@ -19,6 +19,9 @@ src/router.ts
 .vscode/*
 !.vscode/extensions.json
 .idea/
+/.idea/*
+!/.idea/runConfigurations
+
 
 # OS files
 .DS_Store
