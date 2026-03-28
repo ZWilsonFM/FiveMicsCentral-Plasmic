@@ -80,11 +80,13 @@ export const PlasmicIconFilterButton__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicIconFilterButton__ArgsType = {
+  onClickyClack?: (event: any) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicIconFilterButton__ArgsType;
 export const PlasmicIconFilterButton__ArgProps = new Array<ArgPropType>(
+  "onClickyClack",
   "children",
   "slot"
 );
@@ -95,6 +97,7 @@ export type PlasmicIconFilterButton__OverridesType = {
 };
 
 export interface DefaultIconFilterButtonProps {
+  onClickyClack?: (event: any) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
   selected?: SingleBooleanChoiceArg<"selected">;
@@ -177,31 +180,7 @@ function PlasmicIconFilterButton__RenderFunc(props: {
           [sty.rootselected]: hasVariant($state, "selected", "selected")
         }
       )}
-      onClick={async event => {
-        const $steps = {};
-
-        $steps["updateSelected"] = true
-          ? (() => {
-              const actionArgs = { vgroup: "selected", operation: 2 };
-              return (({ vgroup, value }) => {
-                if (typeof value === "string") {
-                  value = [value];
-                }
-
-                const oldValue = $stateGet($state, vgroup);
-                $stateSet($state, vgroup, !oldValue);
-                return !oldValue;
-              })?.apply(null, [actionArgs]);
-            })()
-          : undefined;
-        if (
-          $steps["updateSelected"] != null &&
-          typeof $steps["updateSelected"] === "object" &&
-          typeof $steps["updateSelected"].then === "function"
-        ) {
-          $steps["updateSelected"] = await $steps["updateSelected"];
-        }
-      }}
+      onClick={args.onClickyClack}
     >
       {renderPlasmicSlot({
         defaultContents: (

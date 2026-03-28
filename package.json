@@ -18,7 +18,7 @@
     "@plasmicpkgs/antd5": "^0.0.317",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.263",
     "@plasmicpkgs/plasmic-nav": "^0.0.204",
-    "@plasmicpkgs/plasmic-rich-components": "^1.0.230",
+    "@plasmicpkgs/plasmic-rich-components": "^1.0.112",
     "@plasmicpkgs/plasmic-tabs": "^0.0.75",
     "@plasmicpkgs/react-aria": "^0.0.161",
     "@plasmicpkgs/react-awesome-reveal": "^3.8.242",

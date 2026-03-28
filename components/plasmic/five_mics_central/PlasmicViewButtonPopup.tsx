@@ -140,7 +140,7 @@ function PlasmicViewButtonPopup__RenderFunc(props: {
         path: "combobox.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props["sortBy"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "Set ID"
       },
       {
         path: "isOpen",

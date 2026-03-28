@@ -324,7 +324,7 @@ function PlasmicCard__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return "0";
+                  return "";
                 }
                 throw e;
               }

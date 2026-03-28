@@ -14,6 +14,7 @@ import PlasmicCardComponent from "./plasmic/five_mics_central/PlasmicCard";
 import PlasmicCardFilterRow from "./plasmic/fm_central/PlasmicCardFilterRow";
 
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import IconFilterButton from "./IconFilterButton.tsx";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -56,6 +57,13 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
   }
 
   return <PlasmicDeckBuilder
+      {...props}
+      root={{ ref,
+      artists: <IconFilterButton onClickyClack={ () => {console.log("artist selected");}}/>
+      }}
+      /*artists={{onClick: () => {console.log("artist selected")}}}*/
+      /*events={{onChange: () => toggleType("events")}}
+      items={{onChange: () => toggleType("items")}}*/
       availableCardsDisplayContainer={
       <PlasmicDeckBuilder.availableCardsDisplayContainer cards={{
         children: filteredCards
@@ -85,8 +93,7 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
               />
           ))
       }}
-      root={{ ref }}
-      {...props}
+
   />;
 }
 
