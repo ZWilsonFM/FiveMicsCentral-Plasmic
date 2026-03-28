@@ -19,8 +19,8 @@ src/router.ts
 .vscode/*
 !.vscode/extensions.json
 .idea/
-/.idea/*
-!/.idea/runConfigurations
+.idea/*
+!.idea/runConfigurations
 
 
 # OS files
