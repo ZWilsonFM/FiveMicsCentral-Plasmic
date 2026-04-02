@@ -67,10 +67,16 @@ import sty from "./PlasmicMenuSection.module.css"; // plasmic-import: Y-aThhdamg
 
 createPlasmicElementProxy;
 
-export type PlasmicMenuSection__VariantMembers = {};
-export type PlasmicMenuSection__VariantsArgs = {};
+export type PlasmicMenuSection__VariantMembers = {
+  noHeader: "noHeader";
+};
+export type PlasmicMenuSection__VariantsArgs = {
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
+};
 type VariantPropType = keyof PlasmicMenuSection__VariantsArgs;
-export const PlasmicMenuSection__VariantProps = new Array<VariantPropType>();
+export const PlasmicMenuSection__VariantProps = new Array<VariantPropType>(
+  "noHeader"
+);
 
 export type PlasmicMenuSection__ArgsType = {
   header?: React.ReactNode;
@@ -90,6 +96,7 @@ export type PlasmicMenuSection__OverridesType = {
 export interface DefaultMenuSectionProps {
   header?: React.ReactNode;
   items?: React.ReactNode;
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
   className?: string;
 }
 
@@ -123,6 +130,25 @@ function PlasmicMenuSection__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "noHeader",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noHeader
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -137,13 +163,16 @@ function PlasmicMenuSection__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootnoHeader]: hasVariant($state, "noHeader", "noHeader") }
       )}
       header={
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox)}
+          className={classNames(projectcss.all, sty.freeBox, {
+            [sty.freeBoxnoHeader]: hasVariant($state, "noHeader", "noHeader")
+          })}
         >
           {renderPlasmicSlot({
             defaultContents: "Section Header",
@@ -155,7 +184,11 @@ function PlasmicMenuSection__RenderFunc(props: {
       items={renderPlasmicSlot({
         defaultContents: (
           <React.Fragment>
-            <MenuItem label={"Section Item 1"} value={"section-item-1"} />
+            <MenuItem
+              className={classNames("__wab_instance", sty.menuItem__tXcN1)}
+              label={"Section Item 1"}
+              value={"section-item-1"}
+            />
 
             <MenuItem label={"Section Item 2"} value={"section-item-2"} />
 

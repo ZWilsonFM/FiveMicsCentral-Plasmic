@@ -68,14 +68,14 @@ import sty from "./PlasmicTextInput.module.css"; // plasmic-import: a3kKYHRv45O8
 createPlasmicElementProxy;
 
 export type PlasmicTextInput__VariantMembers = {
-  type: "soft" | "plain";
+  type: "soft" | "dark";
   flat: "top" | "right" | "bottom" | "left";
   padded: "left" | "right";
   roundedFull: "roundedFull";
   alignCentered: "alignCentered";
 };
 export type PlasmicTextInput__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "dark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
@@ -265,7 +265,7 @@ export interface DefaultTextInputProps {
     | "webauthn";
   ariaLabel?: string;
   onChange?: (val: string) => void;
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "dark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
@@ -408,7 +408,7 @@ function PlasmicTextInput__RenderFunc(props: {
             "roundedFull",
             "roundedFull"
           ),
-          [sty.ariaInputtype_plain]: hasVariant($state, "type", "plain"),
+          [sty.ariaInputtype_dark]: hasVariant($state, "type", "dark"),
           [sty.ariaInputtype_soft]: hasVariant($state, "type", "soft")
         }
       ),

@@ -72,6 +72,37 @@ import TwitterSvgIcon from "./icons/PlasmicIcon__TwitterSvg"; // plasmic-import:
 import InstagramSvgIcon from "./icons/PlasmicIcon__InstagramSvg"; // plasmic-import: Rr-5TVtiZWVJ/icon
 import LinkedinSvgIcon from "./icons/PlasmicIcon__LinkedinSvg"; // plasmic-import: raifTTZMSvVv/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary" as const
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicTempPage__VariantMembers = {};
@@ -153,6 +184,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.a,
+                    projectcss.a__2z3i9,
                     sty.link__uEHa
                   )}
                   platform={"react"}
@@ -178,6 +210,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__txbvZ
                     )}
                     href={"#"}
@@ -197,6 +230,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__t5FY0
                     )}
                     href={"#"}
@@ -216,6 +250,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__rpFxn
                     )}
                     href={"#"}
@@ -235,6 +270,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link___1NIpW
                     )}
                     href={"#"}
@@ -256,6 +292,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__vIRtZ
                     )}
                     href={"#"}
@@ -310,6 +347,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.h1,
+                      projectcss.h1__2z3i9,
                       projectcss.__wab_text,
                       sty.h1
                     )}
@@ -334,6 +372,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link___9I7Yl
                       )}
                       href={"#"}
@@ -380,6 +419,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link__l0M3K
                       )}
                       href={"#"}
@@ -584,6 +624,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2__ktMfK
                   )}
@@ -682,6 +723,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h5,
+                          projectcss.h5__2z3i9,
                           projectcss.__wab_text,
                           sty.h5___21VNb
                         )}
@@ -711,6 +753,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h5,
+                          projectcss.h5__2z3i9,
                           projectcss.__wab_text,
                           sty.h5__zhiQz
                         )}
@@ -740,6 +783,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h5,
+                          projectcss.h5__2z3i9,
                           projectcss.__wab_text,
                           sty.h5__wxbYs
                         )}
@@ -884,6 +928,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2__lKZqa
                   )}
@@ -911,6 +956,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2__roWeQ
                   )}
@@ -1082,6 +1128,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2__utizv
                   )}
@@ -1103,6 +1150,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.a,
+                    projectcss.a__2z3i9,
                     sty.link__elgQg
                   )}
                   href={"#"}
@@ -1167,6 +1215,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h3,
+                          projectcss.h3__2z3i9,
                           projectcss.__wab_text,
                           sty.h3__obMq5
                         )}
@@ -1213,6 +1262,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h3,
+                          projectcss.h3__2z3i9,
                           projectcss.__wab_text,
                           sty.h3___0GJi
                         )}
@@ -1264,6 +1314,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h3,
+                          projectcss.h3__2z3i9,
                           projectcss.__wab_text,
                           sty.h3__lvBKj
                         )}
@@ -1313,6 +1364,7 @@ function PlasmicTempPage__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.h3,
+                          projectcss.h3__2z3i9,
                           projectcss.__wab_text,
                           sty.h3___63Tqk
                         )}
@@ -1343,6 +1395,7 @@ function PlasmicTempPage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2__b6Gn6
                   )}
@@ -1377,6 +1430,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h2,
+                        projectcss.h2__2z3i9,
                         projectcss.__wab_text,
                         sty.h2__xOzT
                       )}
@@ -1492,6 +1546,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__k5BFl
                             )}
@@ -1558,6 +1613,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__zurif
                             )}
@@ -1624,6 +1680,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__mzHft
                             )}
@@ -1692,6 +1749,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__mp3Wa
                             )}
@@ -1758,6 +1816,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__e2IsY
                             )}
@@ -1827,6 +1886,7 @@ function PlasmicTempPage__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__2z3i9,
                               projectcss.__wab_text,
                               sty.h5__c2U7A
                             )}
@@ -1896,6 +1956,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h4,
+                        projectcss.h4__2z3i9,
                         projectcss.__wab_text,
                         sty.h4__tlUai
                       )}
@@ -2337,6 +2398,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link__ijbNk
                       )}
                       href={"#"}
@@ -2403,6 +2465,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h4,
+                        projectcss.h4__2z3i9,
                         projectcss.__wab_text,
                         sty.h4___7Zp4
                       )}
@@ -2815,6 +2878,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link___5SGwk
                       )}
                       href={"#"}
@@ -2871,6 +2935,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h4,
+                        projectcss.h4__2z3i9,
                         projectcss.__wab_text,
                         sty.h4__gjhx0
                       )}
@@ -3320,6 +3385,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link__wuZwx
                       )}
                       href={"#"}
@@ -3398,6 +3464,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h3,
+                        projectcss.h3__2z3i9,
                         projectcss.__wab_text,
                         sty.h3__nvfWd
                       )}
@@ -3423,6 +3490,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link__pAazI
                       )}
                       href={"#"}
@@ -3491,6 +3559,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.h4,
+                            projectcss.h4__2z3i9,
                             projectcss.__wab_text,
                             sty.h4__sKj5E
                           )}
@@ -3944,6 +4013,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.a,
+                            projectcss.a__2z3i9,
                             sty.link__mIsn2
                           )}
                           href={"#"}
@@ -4006,6 +4076,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.h4,
+                            projectcss.h4__2z3i9,
                             projectcss.__wab_text,
                             sty.h4__lBUbD
                           )}
@@ -4451,6 +4522,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.a,
+                            projectcss.a__2z3i9,
                             sty.link__vi1B9
                           )}
                           href={"#"}
@@ -4523,6 +4595,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.h4,
+                            projectcss.h4__2z3i9,
                             projectcss.__wab_text,
                             sty.h4__dJbwf
                           )}
@@ -4978,6 +5051,7 @@ function PlasmicTempPage__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.a,
+                            projectcss.a__2z3i9,
                             sty.link___6EOuc
                           )}
                           href={"#"}
@@ -5038,6 +5112,7 @@ function PlasmicTempPage__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         sty.link__dtw75
                       )}
                       platform={"react"}
@@ -5099,6 +5174,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.h4,
+                      projectcss.h4__2z3i9,
                       projectcss.__wab_text,
                       sty.h4__vT0LP
                     )}
@@ -5109,6 +5185,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link___90Tga
                     )}
                     href={"#"}
@@ -5128,6 +5205,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link___0Z35C
                     )}
                     href={"#"}
@@ -5147,6 +5225,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__wtLkq
                     )}
                     href={"#"}
@@ -5166,6 +5245,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__vOtz
                     )}
                     href={"#"}
@@ -5187,6 +5267,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.h4,
+                      projectcss.h4__2z3i9,
                       projectcss.__wab_text,
                       sty.h4__zvyKi
                     )}
@@ -5197,6 +5278,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__qOHkt
                     )}
                     href={"#"}
@@ -5216,6 +5298,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__yuY9A
                     )}
                     href={"#"}
@@ -5237,6 +5320,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.h4,
+                      projectcss.h4__2z3i9,
                       projectcss.__wab_text,
                       sty.h4__iSpqm
                     )}
@@ -5247,6 +5331,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__bOyJ
                     )}
                     href={"#"}
@@ -5266,6 +5351,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__oJfJ9
                     )}
                     href={"#"}
@@ -5285,6 +5371,7 @@ function PlasmicTempPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__xkYpe
                     )}
                     href={"#"}
@@ -5404,13 +5491,12 @@ export const PlasmicTempPage = Object.assign(
     internalVariantProps: PlasmicTempPage__VariantProps,
     internalArgProps: PlasmicTempPage__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/temp-page",
+      pagePath: "/temp-page",
+      params: {},
+      query: {}
+    })
   }
 );
 

@@ -10,6 +10,7 @@
  * - Sets
  */
 
+import * as React from 'react';
 import { useState, useMemo } from 'react';
 import { Card, CardFilters } from '@/lib/types';
 
@@ -121,10 +122,10 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
     const sets = new Set<string>();
 
     cards.forEach((card) => {
-      types.add(card.type[0]);
-      card.styles.forEach((style) => styles.add(style));
+      types.add(card.type);
+      styles.add(card.styles)
       costs.add(card.cost);
-      rarities.add(card.rarity[0]);
+      rarities.add(card.rarity);
       sets.add(card.set_id_code);
     });
 
@@ -146,9 +147,7 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
         const nameMatch = card.name.toLowerCase().includes(searchLower);
         const abilityMatch =
           card.ability?.toLowerCase().includes(searchLower) ?? false;
-        const subTypeMatch = card.sub_type.some((st) =>
-          st.toLowerCase().includes(searchLower)
-        );
+        const subTypeMatch = card.sub_type?.toLowerCase().includes(searchLower);
 
         if (!nameMatch && !abilityMatch && !subTypeMatch) {
           return false;
@@ -156,14 +155,14 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
       }
 
       // Type filter (empty array = show all)
-      if (filters.types.length > 0 && !filters.types.includes(card.type[0])) {
+      if (filters.types.length > 0 && !filters.types.includes(card.type)) {
         return false;
       }
 
       // Style filter (card must have at least one of the selected styles)
       if (
         filters.styles.length > 0 &&
-        !card.styles.some((style) => filters.styles.includes(style))
+        !filters.styles.includes(card.styles)
       ) {
         return false;
       }
@@ -176,7 +175,7 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
       // Rarity filter (empty array = show all)
       if (
         filters.rarities.length > 0 &&
-        !filters.rarities.includes(card.rarity[0])
+        !filters.rarities.includes(card.rarity)
       ) {
         return false;
       }
@@ -194,78 +193,78 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
   }, [cards, filters]);
 
   // Filter setters
-  const setSearch = (value: string) => {
+  const setSearch = React.useCallback((value: string) => {
     setFilters((prev) => ({ ...prev, search: value }));
-  };
+  }, []);
 
-  const setTypes = (types: string[]) => {
+  const setTypes = React.useCallback((types: string[]) => {
     setFilters((prev) => ({ ...prev, types }));
-  };
+  }, []);
 
-  const toggleType = (type: string) => {
+  const toggleType = React.useCallback((type: string) => {
     setFilters((prev) => ({
       ...prev,
       types: prev.types.includes(type)
         ? prev.types.filter((t) => t !== type)
         : [...prev.types, type],
     }));
-  };
+  }, []);
 
-  const setStyles = (styles: string[]) => {
+  const setStyles = React.useCallback((styles: string[]) => {
     setFilters((prev) => ({ ...prev, styles }));
-  };
+  }, []);
 
-  const toggleStyle = (style: string) => {
+  const toggleStyle = React.useCallback((style: string) => {
     setFilters((prev) => ({
       ...prev,
       styles: prev.styles.includes(style)
         ? prev.styles.filter((s) => s !== style)
         : [...prev.styles, style],
     }));
-  };
+  }, []);
 
-  const setCosts = (costs: number[]) => {
+  const setCosts = React.useCallback((costs: number[]) => {
     setFilters((prev) => ({ ...prev, costs }));
-  };
+  }, []);
 
-  const toggleCost = (cost: number) => {
+  const toggleCost = React.useCallback((cost: number) => {
     setFilters((prev) => ({
       ...prev,
       costs: prev.costs.includes(cost)
         ? prev.costs.filter((c) => c !== cost)
         : [...prev.costs, cost],
     }));
-  };
+  }, []);
 
-  const setRarities = (rarities: string[]) => {
+  const setRarities = React.useCallback((rarities: string[]) => {
     setFilters((prev) => ({ ...prev, rarities }));
-  };
+  }, []);
 
-  const toggleRarity = (rarity: string) => {
+  const toggleRarity = React.useCallback((rarity: string) => {
     setFilters((prev) => ({
       ...prev,
       rarities: prev.rarities.includes(rarity)
         ? prev.rarities.filter((r) => r !== rarity)
         : [...prev.rarities, rarity],
     }));
-  };
+  }, []);
 
-  const setSets = (sets: string[]) => {
+  const setSets = React.useCallback((sets: string[]) => {
     setFilters((prev) => ({ ...prev, sets }));
-  };
+  }, []);
 
-  const toggleSet = (set: string) => {
+  const toggleSet = React.useCallback((set: string) => {
     setFilters((prev) => ({
       ...prev,
       sets: prev.sets.includes(set)
         ? prev.sets.filter((s) => s !== set)
         : [...prev.sets, set],
     }));
-  };
+  }, []);
 
-  const clearFilters = () => {
+  const clearFilters = React.useCallback(() => {
     setFilters(INITIAL_FILTERS);
-  };
+  }, []);
 
   return {
     // State

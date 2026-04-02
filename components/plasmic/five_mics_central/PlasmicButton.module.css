@@ -40,6 +40,9 @@
 .rootcolor_errorDestructive:global(.__wab_instance) {
   background: var(--token-r813PqAL17Gx);
 }
+.rootcolor_white:global(.__wab_instance) {
+  background: var(--token-qE7yDSx74T9S);
+}
 .roottype_soft:global(.__wab_instance) {
   background: none;
 }
@@ -48,6 +51,12 @@
 }
 .roottype_noFill:global(.__wab_instance) {
   background: none;
+}
+.roottype_noFill[data-hovered]:global(.__wab_instance) {
+  background: var(--token-ZIWYYqB51_gg);
+}
+.roottype_noFill[data-pressed]:global(.__wab_instance) {
+  background: var(--token-H-zsZZQz0UTF);
 }
 .rootsize_extraSmall:global(.__wab_instance) {
   line-height: var(--token-I7xXh8khIYu3);
@@ -124,7 +133,7 @@
   display: block;
 }
 .roottype_bordered[data-hovered] .softBackgroundtype_bordered {
-  background: var(--token-EMs2UJA2a4CJ);
+  background: var(--token-kFI90AYWY-Ar);
   opacity: 0.5;
   display: block;
 }
@@ -164,7 +173,7 @@
   background: none;
   display: block;
   border-width: 1px;
-  border-color: var(--token-v7qmW4z-kvLQ);
+  border-color: var(--token-AqOCY_C21mcv);
 }
 .borderroundedFull {
   border-radius: 99px;
@@ -208,9 +217,11 @@
 }
 .roottype_noFill[data-hovered] .interactionEffecttype_noFill {
   background: var(--token-kFI90AYWY-Ar);
+  display: none;
 }
 .roottype_noFill[data-pressed] .interactionEffecttype_noFill {
   background: var(--token-H-zsZZQz0UTF);
+  display: none;
 }
 .interactionEffectroundedFull {
   border-radius: 99px;
@@ -339,6 +350,7 @@
 }
 .slotTargetLabel {
   color: var(--token-v7qmW4z-kvLQ);
+  font-family: var(--token-LpPjQKScegqg);
 }
 .slotTargetLabelcolor_neutral {
   color: var(--token-J-n4ivkP2rJU);
@@ -355,6 +367,10 @@
 .slotTargetLabelcolor_errorDestructive {
   color: var(--token-g2Kn4BFs9esI);
 }
+.slotTargetLabelcolor_white {
+  font-family: var(--token-LpPjQKScegqg);
+  color: var(--token-_XLOY8y1n-eS);
+}
 .slotTargetLabeltype_soft {
   color: var(--token-JIgZE8Kssn40);
 }
@@ -363,6 +379,11 @@
 }
 .roottype_bordered[data-pressed] .slotTargetLabeltype_bordered {
   color: var(--token-v7qmW4z-kvLQ);
+}
+.slotTargetLabeltextSize_small {
+  font-family: var(--token-LpPjQKScegqg);
+  font-size: var(--token-qCqmumvtKYQR);
+  font-weight: 500;
 }
 .slotTargetLabelcolor_neutral_type_soft {
   color: var(--token-BkwAOlBFEoel);
@@ -408,6 +429,7 @@
 .text__zfzZ {
   white-space: pre;
   font-family: var(--token-LpPjQKScegqg);
+  color: var(--token-v7qmW4z-kvLQ);
 }
 .freeBox__uax6 {
   flex-direction: column;

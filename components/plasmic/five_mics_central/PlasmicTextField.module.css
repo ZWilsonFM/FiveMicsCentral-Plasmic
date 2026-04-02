@@ -13,6 +13,12 @@
 .label:global(.__wab_instance):global(.__wab_instance) {
   position: relative;
 }
+.labelonlyInput:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.slotTargetLabel {
+  font-family: var(--token-LpPjQKScegqg);
+}
 .freeBox__tpsEg {
   display: flex;
   flex-direction: column;
@@ -40,6 +46,9 @@
   position: relative;
   height: 1em;
 }
+.textInputiconStart:global(.__wab_instance):global(.__wab_instance) {
+  display: block;
+}
 .textAreaInputmultiLine:global(.__wab_instance):global(.__wab_instance) {
   display: block;
 }
@@ -63,6 +72,69 @@
   color: var(--token-TlGGssgpe902);
 }
 .svg__iUnoE {
+  position: relative;
+  height: 1em;
+}
+.showButton:global(.__wab_instance):global(.__wab_instance) {
+  width: 40px;
+  position: absolute;
+  left: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+.showButtonpassword_hidePassword:global(.__wab_instance):global(
+    .__wab_instance
+  ) {
+  display: flex;
+}
+.showButtonpassword_showPassword:global(.__wab_instance):global(
+    .__wab_instance
+  ) {
+  display: none;
+}
+.svg__wmfTl {
+  position: relative;
+  height: 1em;
+}
+.text___3Ymfw {
+  white-space: pre;
+  font-family: var(--token-LpPjQKScegqg);
+  color: var(--token-v7qmW4z-kvLQ);
+}
+.svg__fms2Y {
+  position: relative;
+  height: 1em;
+}
+.hideButton:global(.__wab_instance):global(.__wab_instance) {
+  width: 40px;
+  position: absolute;
+  left: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.hideButtonpassword_hidePassword:global(.__wab_instance):global(
+    .__wab_instance
+  ) {
+  display: none;
+}
+.hideButtonpassword_showPassword:global(.__wab_instance):global(
+    .__wab_instance
+  ) {
+  display: flex;
+}
+.svg__xj9Rq {
+  position: relative;
+  height: 1em;
+}
+.text__a1T5T {
+  white-space: pre;
+  font-family: var(--token-LpPjQKScegqg);
+  color: var(--token-v7qmW4z-kvLQ);
+}
+.svg__i0Ss1 {
   position: relative;
   height: 1em;
 }

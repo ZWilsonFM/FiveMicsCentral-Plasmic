@@ -70,6 +70,37 @@ import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: kFoBXtM
 import ChevronDown2Icon from "./icons/PlasmicIcon__ChevronDown2"; // plasmic-import: kg3Avrhi5Cmk/icon
 import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: wFGGoF3JQZmP/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary" as const
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicFeatures__VariantMembers = {};
@@ -165,6 +196,7 @@ function PlasmicFeatures__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.a,
+                    projectcss.a__2z3i9,
                     sty.link__xzHlb
                   )}
                   platform={"react"}
@@ -179,6 +211,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__csFeK
                     )}
                     platform={"react"}
@@ -209,6 +242,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__lsXpY
                     )}
                     platform={"react"}
@@ -239,6 +273,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__uiYxG
                     )}
                     platform={"react"}
@@ -269,6 +304,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__kojZg
                     )}
                     platform={"react"}
@@ -299,6 +335,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
+                      projectcss.a__2z3i9,
                       sty.link__whbsA
                     )}
                     platform={"react"}
@@ -415,6 +452,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h1,
+                        projectcss.h1__2z3i9,
                         projectcss.__wab_text,
                         sty.h1
                       )}
@@ -471,6 +509,7 @@ function PlasmicFeatures__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.h3,
+                      projectcss.h3__2z3i9,
                       projectcss.__wab_text,
                       sty.h3__wq9Ns
                     )}
@@ -508,6 +547,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5___4DkD1
                       )}
@@ -526,6 +566,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5___9Ix6N
                       )}
@@ -544,6 +585,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5__mdkXa
                       )}
@@ -562,6 +604,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5__pQJa
                       )}
@@ -580,6 +623,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5___1KoZw
                       )}
@@ -627,6 +671,7 @@ function PlasmicFeatures__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h3,
+                              projectcss.h3__2z3i9,
                               projectcss.__wab_text,
                               sty.h3__xkrqz
                             )}
@@ -781,6 +826,7 @@ function PlasmicFeatures__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.h2,
+                    projectcss.h2__2z3i9,
                     projectcss.__wab_text,
                     sty.h2
                   )}
@@ -896,6 +942,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5__g9Fkl
                       )}
@@ -906,6 +953,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         projectcss.__wab_text,
                         sty.link__ldq2V
                       )}
@@ -917,6 +965,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         projectcss.__wab_text,
                         sty.link__dtse
                       )}
@@ -928,6 +977,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         projectcss.__wab_text,
                         sty.link__n4OuB
                       )}
@@ -939,6 +989,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         projectcss.__wab_text,
                         sty.link__fmpGr
                       )}
@@ -950,6 +1001,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.a,
+                        projectcss.a__2z3i9,
                         projectcss.__wab_text,
                         sty.link__f8Ele
                       )}
@@ -963,6 +1015,7 @@ function PlasmicFeatures__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.h5,
+                        projectcss.h5__2z3i9,
                         projectcss.__wab_text,
                         sty.h5__vCq
                       )}
@@ -1147,6 +1200,7 @@ function PlasmicFeatures__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.a,
+                          projectcss.a__2z3i9,
                           projectcss.__wab_text,
                           projectcss.plasmic_default__inline,
                           sty.link__dELg
@@ -1328,13 +1382,12 @@ export const PlasmicFeatures = Object.assign(
     internalVariantProps: PlasmicFeatures__VariantProps,
     internalArgProps: PlasmicFeatures__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/features",
+      pagePath: "/features",
+      params: {},
+      query: {}
+    })
   }
 );
 

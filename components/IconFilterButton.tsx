@@ -20,13 +20,15 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultIconFilterButtonProps altogether and have
 // total control over the props for your component.
-export interface IconFilterButtonProps extends DefaultIconFilterButtonProps {}
+export interface IconFilterButtonProps extends DefaultIconFilterButtonProps {
+  onClick: () => void;
+  selected: boolean;
+}
 
-function IconFilterButton_(
-  props: IconFilterButtonProps,
+function IconFilterButton_({onClick, selected, ...rest}: IconFilterButtonProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  return <PlasmicIconFilterButton root={{ ref }} {...props} />;
+  return <PlasmicIconFilterButton root={{ ref }} {...rest} onClick={onClick} selected={selected}/>;
 }
 
 const IconFilterButton = React.forwardRef(IconFilterButton_);

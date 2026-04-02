@@ -64,6 +64,7 @@ import Card from "../../Card"; // plasmic-import: 7-kwLa9CoL-9/component
 import Tooltip from "../../Tooltip"; // plasmic-import: yWJeAtiyMczC/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: oGBMMLa55JcP/component
 import Checkbox from "../../Checkbox"; // plasmic-import: LjH9V-3dKJr5/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/styleTokensProvider
 
@@ -72,10 +73,10 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/projectcss
 import sty from "./PlasmicDeckBuilder.module.css"; // plasmic-import: 153XzgxmFis5/css
 
-import ExitArrowIcon from "./icons/PlasmicIcon__ExitArrow"; // plasmic-import: BWc3ni8kPecb/icon
+import ReturnIcon from "./icons/PlasmicIcon__Return"; // plasmic-import: BWc3ni8kPecb/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: gXJpv5gh0fGI/icon
 import FiltersIcon from "./icons/PlasmicIcon__Filters"; // plasmic-import: BEWJyHlnajmY/icon
-import EyeIcon from "./icons/PlasmicIcon__Eye"; // plasmic-import: k2AtpvGpF7yj/icon
+import EyeBoldIcon from "./icons/PlasmicIcon__EyeBold"; // plasmic-import: k2AtpvGpF7yj/icon
 import MenuIcon from "./icons/PlasmicIcon__Menu"; // plasmic-import: JRFM_xjF6oZG/icon
 import SaveIcon from "./icons/PlasmicIcon__Save"; // plasmic-import: wEvoZk6A-cnL/icon
 import ExportIcon from "./icons/PlasmicIcon__Export"; // plasmic-import: Ftqs-DYiJ2uy/icon
@@ -136,6 +137,10 @@ export type PlasmicDeckBuilder__OverridesType = {
   viewButton?: Flex__<typeof Button>;
   viewPopup?: Flex__<"div">;
   sortingAllCards?: Flex__<typeof Combobox>;
+  menuItem?: Flex__<typeof MenuItem>;
+  menuItem2?: Flex__<typeof MenuItem>;
+  menuItem3?: Flex__<typeof MenuItem>;
+  menuItem4?: Flex__<typeof MenuItem>;
   quickFilters?: Flex__<"div">;
   cardTypes?: Flex__<"div">;
   artists?: Flex__<typeof IconFilterButton>;
@@ -184,6 +189,10 @@ export type PlasmicDeckBuilder__OverridesType = {
   viewButton2?: Flex__<typeof Button>;
   viewPopup2?: Flex__<"div">;
   sortingDeck?: Flex__<typeof Combobox>;
+  menuItem5?: Flex__<typeof MenuItem>;
+  menuItem6?: Flex__<typeof MenuItem>;
+  menuItem7?: Flex__<typeof MenuItem>;
+  menuItem8?: Flex__<typeof MenuItem>;
   cardsInDeck?: Flex__<"div">;
   filterPanel?: Flex__<"div">;
   container?: Flex__<"div">;
@@ -640,9 +649,10 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   {"Exit"}
                 </div>
               }
+              linkTo={`/`}
               roundedFull={true}
               start={
-                <ExitArrowIcon
+                <ReturnIcon
                   className={classNames(projectcss.all, sty.svg__rk9LT)}
                   role={"img"}
                 />
@@ -874,7 +884,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                       }
                     }}
                     start={
-                      <EyeIcon
+                      <EyeBoldIcon
                         className={classNames(projectcss.all, sty.svg__pIqVa)}
                         role={"img"}
                       />
@@ -912,13 +922,37 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                         ])}
                         items={
                           <React.Fragment>
-                            <MenuItem label={"Set ID"} value={"Set ID"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem"}
+                              data-plasmic-override={overrides.menuItem}
+                              label={"Set ID"}
+                              type={"noIcon"}
+                              value={"Set ID"}
+                            />
 
-                            <MenuItem label={"Name: A to Z"} value={"A to Z"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem2"}
+                              data-plasmic-override={overrides.menuItem2}
+                              label={"Name: A to Z"}
+                              type={"noIcon"}
+                              value={"A to Z"}
+                            />
 
-                            <MenuItem label={"Name: Z to A"} value={"Z to A"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem3"}
+                              data-plasmic-override={overrides.menuItem3}
+                              label={"Name: Z to A"}
+                              type={"noIcon"}
+                              value={"Z to A"}
+                            />
 
-                            <MenuItem label={"Rarity"} value={"Rarity"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem4"}
+                              data-plasmic-override={overrides.menuItem4}
+                              label={"Rarity"}
+                              type={"noIcon"}
+                              value={"Rarity"}
+                            />
                           </React.Fragment>
                         }
                         label={
@@ -932,9 +966,9 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
-                                style={{ color: "#F4F4F5" }}
+                                style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                               >
                                 {"Sort By"}
                               </span>
@@ -1493,7 +1527,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   }
                 }}
                 placeholder={"Unsaved Deck"}
-                type={"plain"}
+                type={"soft"}
                 value={generateStateValueProp($state, ["deckName", "value"])}
               />
 
@@ -1535,7 +1569,9 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"10"}
@@ -1553,7 +1589,9 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"/ 30"}
@@ -1579,7 +1617,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                           <React.Fragment>{"There must be "}</React.Fragment>
                           <span
                             className={
-                              "plasmic_default__all plasmic_default__span"
+                              "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                             }
                             style={{ fontWeight: 700 }}
                           >
@@ -1653,7 +1691,9 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"10"}
@@ -1671,7 +1711,9 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"/ 15"}
@@ -1697,7 +1739,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                           <React.Fragment>{"There must be "}</React.Fragment>
                           <span
                             className={
-                              "plasmic_default__all plasmic_default__span"
+                              "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                             }
                             style={{ fontWeight: 700 }}
                           >
@@ -2256,7 +2298,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                       }
                     }}
                     start={
-                      <EyeIcon
+                      <EyeBoldIcon
                         className={classNames(projectcss.all, sty.svg__kZjW3)}
                         role={"img"}
                       />
@@ -2294,13 +2336,37 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                         ])}
                         items={
                           <React.Fragment>
-                            <MenuItem label={"Set ID"} value={"Set ID"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem5"}
+                              data-plasmic-override={overrides.menuItem5}
+                              label={"Set ID"}
+                              type={"noIcon"}
+                              value={"Set ID"}
+                            />
 
-                            <MenuItem label={"Name: A to Z"} value={"A to Z"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem6"}
+                              data-plasmic-override={overrides.menuItem6}
+                              label={"Name: A to Z"}
+                              type={"noIcon"}
+                              value={"A to Z"}
+                            />
 
-                            <MenuItem label={"Name: Z to A"} value={"Z to A"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem7"}
+                              data-plasmic-override={overrides.menuItem7}
+                              label={"Name: Z to A"}
+                              type={"noIcon"}
+                              value={"Z to A"}
+                            />
 
-                            <MenuItem label={"Rarity"} value={"Rarity"} />
+                            <MenuItem
+                              data-plasmic-name={"menuItem8"}
+                              data-plasmic-override={overrides.menuItem8}
+                              label={"Rarity"}
+                              type={"noIcon"}
+                              value={"Rarity"}
+                            />
                           </React.Fragment>
                         }
                         label={
@@ -2314,7 +2380,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
                                 style={{ color: "#F4F4F5" }}
                               >
@@ -2416,6 +2482,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.h4,
+                            projectcss.h4__jSxoi,
                             projectcss.__wab_text,
                             sty.h4
                           )}
@@ -2423,7 +2490,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                           <React.Fragment>
                             <span
                               className={
-                                "plasmic_default__all plasmic_default__span"
+                                "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                               }
                               style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                             >
@@ -2511,6 +2578,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__jSxoi,
                               projectcss.__wab_text,
                               sty.h5__cmeAh
                             )}
@@ -2518,7 +2586,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
                                 style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                               >
@@ -2776,6 +2844,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__jSxoi,
                               projectcss.__wab_text,
                               sty.h5__dd9Ml
                             )}
@@ -2783,7 +2852,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
                                 style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                               >
@@ -2867,7 +2936,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{
                                       color: "var(--token-v7qmW4z-kvLQ)"
@@ -2917,7 +2986,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{
                                       color: "var(--token-v7qmW4z-kvLQ)"
@@ -2964,7 +3033,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3009,7 +3078,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3057,7 +3126,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3109,6 +3178,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__jSxoi,
                               projectcss.__wab_text,
                               sty.h5___97Pcw
                             )}
@@ -3116,7 +3186,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
                                 style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                               >
@@ -3200,7 +3270,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{
                                       color: "var(--token-v7qmW4z-kvLQ)"
@@ -3247,7 +3317,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{
                                       color: "var(--token-v7qmW4z-kvLQ)"
@@ -3294,7 +3364,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3339,7 +3409,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3384,7 +3454,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3429,7 +3499,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3474,7 +3544,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3522,7 +3592,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3567,7 +3637,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3612,7 +3682,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3657,7 +3727,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3702,7 +3772,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3747,7 +3817,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3795,7 +3865,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3843,7 +3913,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3888,7 +3958,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{ color: "#F4F4F5" }}
                                   >
@@ -3940,6 +4010,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.h5,
+                              projectcss.h5__jSxoi,
                               projectcss.__wab_text,
                               sty.h5__lBpIo
                             )}
@@ -3947,7 +4018,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                             <React.Fragment>
                               <span
                                 className={
-                                  "plasmic_default__all plasmic_default__span"
+                                  "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                 }
                                 style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                               >
@@ -4032,7 +4103,7 @@ function PlasmicDeckBuilder__RenderFunc(props: {
                                 <React.Fragment>
                                   <span
                                     className={
-                                      "plasmic_default__all plasmic_default__span"
+                                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
                                     }
                                     style={{
                                       color: "var(--token-v7qmW4z-kvLQ)"
@@ -4131,6 +4202,10 @@ const PlasmicDescendants = {
     "viewButton",
     "viewPopup",
     "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4",
     "quickFilters",
     "cardTypes",
     "artists",
@@ -4179,6 +4254,10 @@ const PlasmicDescendants = {
     "viewButton2",
     "viewPopup2",
     "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8",
     "cardsInDeck",
     "filterPanel",
     "container",
@@ -4240,6 +4319,10 @@ const PlasmicDescendants = {
     "viewButton",
     "viewPopup",
     "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4",
     "quickFilters",
     "cardTypes",
     "artists",
@@ -4275,14 +4358,44 @@ const PlasmicDescendants = {
     "viewAllCards",
     "viewButton",
     "viewPopup",
-    "sortingAllCards"
+    "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
   ],
   searchInput: ["searchInput"],
   filtersButton: ["filtersButton"],
-  viewAllCards: ["viewAllCards", "viewButton", "viewPopup", "sortingAllCards"],
+  viewAllCards: [
+    "viewAllCards",
+    "viewButton",
+    "viewPopup",
+    "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
+  ],
   viewButton: ["viewButton"],
-  viewPopup: ["viewPopup", "sortingAllCards"],
-  sortingAllCards: ["sortingAllCards"],
+  viewPopup: [
+    "viewPopup",
+    "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
+  ],
+  sortingAllCards: [
+    "sortingAllCards",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
+  ],
+  menuItem: ["menuItem"],
+  menuItem2: ["menuItem2"],
+  menuItem3: ["menuItem3"],
+  menuItem4: ["menuItem4"],
   quickFilters: [
     "quickFilters",
     "cardTypes",
@@ -4378,6 +4491,10 @@ const PlasmicDescendants = {
     "viewButton2",
     "viewPopup2",
     "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8",
     "cardsInDeck"
   ],
   deckName: ["deckName"],
@@ -4411,7 +4528,11 @@ const PlasmicDescendants = {
     "viewDeck",
     "viewButton2",
     "viewPopup2",
-    "sortingDeck"
+    "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8"
   ],
   menu: [
     "menu",
@@ -4426,10 +4547,36 @@ const PlasmicDescendants = {
   saveButton: ["saveButton"],
   exportButton: ["exportButton"],
   deleteButton: ["deleteButton"],
-  viewDeck: ["viewDeck", "viewButton2", "viewPopup2", "sortingDeck"],
+  viewDeck: [
+    "viewDeck",
+    "viewButton2",
+    "viewPopup2",
+    "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8"
+  ],
   viewButton2: ["viewButton2"],
-  viewPopup2: ["viewPopup2", "sortingDeck"],
-  sortingDeck: ["sortingDeck"],
+  viewPopup2: [
+    "viewPopup2",
+    "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8"
+  ],
+  sortingDeck: [
+    "sortingDeck",
+    "menuItem5",
+    "menuItem6",
+    "menuItem7",
+    "menuItem8"
+  ],
+  menuItem5: ["menuItem5"],
+  menuItem6: ["menuItem6"],
+  menuItem7: ["menuItem7"],
+  menuItem8: ["menuItem8"],
   cardsInDeck: ["cardsInDeck"],
   filterPanel: [
     "filterPanel",
@@ -4716,6 +4863,10 @@ type NodeDefaultElementType = {
   viewButton: typeof Button;
   viewPopup: "div";
   sortingAllCards: typeof Combobox;
+  menuItem: typeof MenuItem;
+  menuItem2: typeof MenuItem;
+  menuItem3: typeof MenuItem;
+  menuItem4: typeof MenuItem;
   quickFilters: "div";
   cardTypes: "div";
   artists: typeof IconFilterButton;
@@ -4764,6 +4915,10 @@ type NodeDefaultElementType = {
   viewButton2: typeof Button;
   viewPopup2: "div";
   sortingDeck: typeof Combobox;
+  menuItem5: typeof MenuItem;
+  menuItem6: typeof MenuItem;
+  menuItem7: typeof MenuItem;
+  menuItem8: typeof MenuItem;
   cardsInDeck: "div";
   filterPanel: "div";
   container: "div";
@@ -4889,6 +5044,10 @@ export const PlasmicDeckBuilder = Object.assign(
     viewButton: makeNodeComponent("viewButton"),
     viewPopup: makeNodeComponent("viewPopup"),
     sortingAllCards: makeNodeComponent("sortingAllCards"),
+    menuItem: makeNodeComponent("menuItem"),
+    menuItem2: makeNodeComponent("menuItem2"),
+    menuItem3: makeNodeComponent("menuItem3"),
+    menuItem4: makeNodeComponent("menuItem4"),
     quickFilters: makeNodeComponent("quickFilters"),
     cardTypes: makeNodeComponent("cardTypes"),
     artists: makeNodeComponent("artists"),
@@ -4937,6 +5096,10 @@ export const PlasmicDeckBuilder = Object.assign(
     viewButton2: makeNodeComponent("viewButton2"),
     viewPopup2: makeNodeComponent("viewPopup2"),
     sortingDeck: makeNodeComponent("sortingDeck"),
+    menuItem5: makeNodeComponent("menuItem5"),
+    menuItem6: makeNodeComponent("menuItem6"),
+    menuItem7: makeNodeComponent("menuItem7"),
+    menuItem8: makeNodeComponent("menuItem8"),
     cardsInDeck: makeNodeComponent("cardsInDeck"),
     filterPanel: makeNodeComponent("filterPanel"),
     container: makeNodeComponent("container"),

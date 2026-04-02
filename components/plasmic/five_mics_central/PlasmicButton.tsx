@@ -70,7 +70,13 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicButton__VariantMembers = {
-  color: "neutral" | "muted" | "success" | "warning" | "errorDestructive";
+  color:
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "white";
   type: "soft" | "bordered" | "noFill";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -78,10 +84,11 @@ export type PlasmicButton__VariantMembers = {
   roundedFull: "roundedFull";
   flatSide: "top" | "right" | "bottom" | "left";
   iconOnly: "iconOnly";
+  textSize: "small";
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered" | "noFill">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -90,6 +97,7 @@ export type PlasmicButton__VariantsArgs = {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   iconOnly?: SingleBooleanChoiceArg<"iconOnly">;
+  textSize?: SingleChoiceArg<"small">;
 };
 type VariantPropType = keyof PlasmicButton__VariantsArgs;
 export const PlasmicButton__VariantProps = new Array<VariantPropType>(
@@ -100,7 +108,8 @@ export const PlasmicButton__VariantProps = new Array<VariantPropType>(
   "iconEnd",
   "roundedFull",
   "flatSide",
-  "iconOnly"
+  "iconOnly",
+  "textSize"
 );
 
 export type PlasmicButton__ArgsType = {
@@ -148,7 +157,7 @@ export interface DefaultButtonProps {
   label?: React.ReactNode;
   end?: React.ReactNode;
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered" | "noFill">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -157,6 +166,7 @@ export interface DefaultButtonProps {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   iconOnly?: SingleBooleanChoiceArg<"iconOnly">;
+  textSize?: SingleChoiceArg<"small">;
   className?: string;
 }
 
@@ -242,6 +252,12 @@ function PlasmicButton__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.iconOnly
+      },
+      {
+        path: "textSize",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.textSize
       }
     ],
     [$props, $ctx, $refs]
@@ -328,6 +344,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootcolor_warning_type_soft]:
             hasVariant($state, "color", "warning") &&
             hasVariant($state, "type", "soft"),
+          [sty.rootcolor_white]: hasVariant($state, "color", "white"),
           [sty.rootflatSide_bottom]: hasVariant($state, "flatSide", "bottom"),
           [sty.rootflatSide_left]: hasVariant($state, "flatSide", "left"),
           [sty.rootflatSide_right]: hasVariant($state, "flatSide", "right"),
@@ -348,6 +365,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootsize_extraSmall]: hasVariant($state, "size", "extraSmall"),
           [sty.rootsize_large]: hasVariant($state, "size", "large"),
           [sty.rootsize_small]: hasVariant($state, "size", "small"),
+          [sty.roottextSize_small]: hasVariant($state, "textSize", "small"),
           [sty.roottype_bordered]: hasVariant($state, "type", "bordered"),
           [sty.roottype_bordered_color_neutral]:
             hasVariant($state, "color", "neutral") &&
@@ -589,6 +607,11 @@ function PlasmicButton__RenderFunc(props: {
             $state,
             "type",
             "bordered"
+          ),
+          [sty.freeBoxtype_noFill__mneVfqQwB]: hasVariant(
+            $state,
+            "type",
+            "noFill"
           )
         })}
       >
@@ -807,6 +830,11 @@ function PlasmicButton__RenderFunc(props: {
                 [sty.slotTargetLabelcolor_warning_type_soft]:
                   hasVariant($state, "color", "warning") &&
                   hasVariant($state, "type", "soft"),
+                [sty.slotTargetLabelcolor_white]: hasVariant(
+                  $state,
+                  "color",
+                  "white"
+                ),
                 [sty.slotTargetLabeliconEnd]: hasVariant(
                   $state,
                   "iconEnd",
@@ -844,6 +872,11 @@ function PlasmicButton__RenderFunc(props: {
                 [sty.slotTargetLabelsize_small]: hasVariant(
                   $state,
                   "size",
+                  "small"
+                ),
+                [sty.slotTargetLabeltextSize_small]: hasVariant(
+                  $state,
+                  "textSize",
                   "small"
                 ),
                 [sty.slotTargetLabeltype_bordered]: hasVariant(

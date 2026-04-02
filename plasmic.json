@@ -28065,6 +28065,85 @@
           "cssFilePath": "plasmic/five_mics_central/PlasmicViewButtonPopup.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "_n-czNFA1Bej",
+          "name": "Authentication",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicAuthentication.tsx",
+          "importSpec": {
+            "modulePath": "Authentication.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicAuthentication.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/authentication"
+        },
+        {
+          "id": "XK-w3Ufn50-a",
+          "name": "Button2",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicButton2.tsx",
+          "importSpec": {
+            "modulePath": "Button2.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicButton2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "WJOAB3wyjLjW",
+          "name": "EventCard",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicEventCard.tsx",
+          "importSpec": {
+            "modulePath": "EventCard.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicEventCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3IGfQBSEnDeZ",
+          "name": "Tag",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicTag.tsx",
+          "importSpec": {
+            "modulePath": "Tag.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicTag.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "ZzQmP25S8p0r",
+          "name": "LikeSwitch",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicLikeSwitch.tsx",
+          "importSpec": {
+            "modulePath": "LikeSwitch.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicLikeSwitch.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "thgo703mfYbF",
+          "name": "AccountTab",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicAccountTab.tsx",
+          "importSpec": {
+            "modulePath": "AccountTab.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicAccountTab.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -28095,8 +28174,8 @@
         },
         {
           "id": "BWc3ni8kPecb",
-          "name": "ExitArrowIcon",
-          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__ExitArrow.tsx"
+          "name": "ReturnIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Return.tsx"
         },
         {
           "id": "BEWJyHlnajmY",
@@ -28105,8 +28184,8 @@
         },
         {
           "id": "k2AtpvGpF7yj",
-          "name": "EyeIcon",
-          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Eye.tsx"
+          "name": "EyeBoldIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__EyeBold.tsx"
         },
         {
           "id": "Qyo9pDfJqX78",
@@ -28142,6 +28221,131 @@
           "id": "LovJuL-lJEH1",
           "name": "DeleteIcon",
           "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Delete.tsx"
+        },
+        {
+          "id": "S4XlH-T8PaqP",
+          "name": "EyeSlashedIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__EyeSlashed.tsx"
+        },
+        {
+          "id": "V3pMqAykBAYF",
+          "name": "EyeIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Eye.tsx"
+        },
+        {
+          "id": "WGweY9mDDht0",
+          "name": "GoogleIconLogoSvgrepoComSvgIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__GoogleIconLogoSvgrepoComSvg.tsx"
+        },
+        {
+          "id": "_ri7uVKKBUPd",
+          "name": "ProfileIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Profile.tsx"
+        },
+        {
+          "id": "mwnuWpMKBj4F",
+          "name": "TournamentIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Tournament.tsx"
+        },
+        {
+          "id": "D0Obr-veTXy6",
+          "name": "RecordIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Record.tsx"
+        },
+        {
+          "id": "h8SobKKOAp1v",
+          "name": "PercentIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Percent.tsx"
+        },
+        {
+          "id": "uhJdOTfsvYGz",
+          "name": "DateIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Date.tsx"
+        },
+        {
+          "id": "gv5isnGlK_kj",
+          "name": "LocationIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Location.tsx"
+        },
+        {
+          "id": "5LPQvDXBbFEw",
+          "name": "RegisteredIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Registered.tsx"
+        },
+        {
+          "id": "ftWA632wbFl2",
+          "name": "SeatIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Seat.tsx"
+        },
+        {
+          "id": "eZHy2pdbWK0C",
+          "name": "EmailIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Email.tsx"
+        },
+        {
+          "id": "uJiWTm9MWaXu",
+          "name": "XTwitterIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__XTwitter.tsx"
+        },
+        {
+          "id": "evjBYq79-9w0",
+          "name": "PublicIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Public.tsx"
+        },
+        {
+          "id": "CeXR4dhh8Kee",
+          "name": "PrivateIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Private.tsx"
+        },
+        {
+          "id": "-xnM36Xr3R8h",
+          "name": "SignOutIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__SignOut.tsx"
+        },
+        {
+          "id": "CDkazCpHuDOg",
+          "name": "CommunityIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Community.tsx"
+        },
+        {
+          "id": "1_ocYP3YR-3Z",
+          "name": "DeckIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Deck.tsx"
+        },
+        {
+          "id": "wy0-w6txkp5j",
+          "name": "DeckBuilderIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__DeckBuilder.tsx"
+        },
+        {
+          "id": "UjP--msYbAZe",
+          "name": "FindEventIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__FindEvent.tsx"
+        },
+        {
+          "id": "1zItArNcCiRG",
+          "name": "MyEventIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__MyEvent.tsx"
+        },
+        {
+          "id": "Pjh1ySp2Uxda",
+          "name": "BracketIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Bracket.tsx"
+        },
+        {
+          "id": "wXhFSM32IBUy",
+          "name": "LeaderboardIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Leaderboard.tsx"
+        },
+        {
+          "id": "5vrlhDzUyVGF",
+          "name": "NewsIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__News.tsx"
+        },
+        {
+          "id": "AzJheKTQHQ7Q",
+          "name": "ShareIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Share.tsx"
         }
       ],
       "images": [
@@ -28254,6 +28458,61 @@
           "id": "EecuYOuga1wn",
           "name": "Physical - GEN001 - The Best Friend (site).png 2",
           "filePath": "plasmic/five_mics_central/images/physicalGen001TheBestFriendSitePng2.png"
+        },
+        {
+          "id": "ED-KPoZysFIy",
+          "name": "Artists.png",
+          "filePath": "plasmic/five_mics_central/images/artistsPng.png"
+        },
+        {
+          "id": "2CIV1dl4scJQ",
+          "name": "Logo (w: BG & White Stroke).png",
+          "filePath": "plasmic/five_mics_central/images/logoWBgWhiteStrokePng.png"
+        },
+        {
+          "id": "fpIX0CPYwBlV",
+          "name": "Logo + Subtitle.png",
+          "filePath": "plasmic/five_mics_central/images/logoSubtitlePng.png"
+        },
+        {
+          "id": "wptb8Lh7IhyY",
+          "name": "favicon(light).png",
+          "filePath": "plasmic/five_mics_central/images/faviconLightPng.png"
+        },
+        {
+          "id": "hTB2NkBfbHVo",
+          "name": "F icon.png",
+          "filePath": "plasmic/five_mics_central/images/fIconPng.png"
+        },
+        {
+          "id": "RWYdfwNV1eiy",
+          "name": "GEN166 - Awards Night (artist - Jeff).jpg",
+          "filePath": "plasmic/five_mics_central/images/gen166AwardsNightArtistJeffJpg.jpeg"
+        },
+        {
+          "id": "PiRdODmSCSU2",
+          "name": "Empty Stage.png",
+          "filePath": "plasmic/five_mics_central/images/emptyStagePng.png"
+        },
+        {
+          "id": "0PXrxeZc_2x_",
+          "name": "Feature BG_2.png",
+          "filePath": "plasmic/five_mics_central/images/featureBg2Png.png"
+        },
+        {
+          "id": "lMRwrNNVoY6k",
+          "name": "BG_2.png",
+          "filePath": "plasmic/five_mics_central/images/bg2Png.png"
+        },
+        {
+          "id": "w0oQaI5PTWXc",
+          "name": "bg_green",
+          "filePath": "plasmic/five_mics_central/images/bgGreen.png"
+        },
+        {
+          "id": "TZiXqo7N7iju",
+          "name": "bg_purple",
+          "filePath": "plasmic/five_mics_central/images/bgPurple.png"
         }
       ],
       "indirect": false,
@@ -28274,6 +28533,37 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "5dGW8Awro3qq8Hh5MveXLP",
+      "projectApiToken": "wVHvHSTRyoO1MQddr5ypmW8AfwiMMy7h0Iaj4Q2YmYLLEo2A4L6pLn8Fydm8wQkTAJV9uAD5bJPo8bmGg",
+      "projectName": "lottie-react",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/lottie_react/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/lottie_react/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/lottie_react/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "BPNsJ2qis6",
+          "name": "LottieWrapper",
+          "displayName": "hostless-lottie-react",
+          "componentImportPath": "@plasmicpkgs/lottie-react"
+        },
+        {
+          "id": "vbTFHH9P-cuM",
+          "name": "AsyncLottieWrapper",
+          "displayName": "hostless-lottie-async-react",
+          "componentImportPath": "@plasmicpkgs/lottie-react"
         }
       ],
       "customFunctions": []

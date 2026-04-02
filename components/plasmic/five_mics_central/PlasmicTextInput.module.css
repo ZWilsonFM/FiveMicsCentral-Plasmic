@@ -3,14 +3,14 @@
   box-shadow: none;
   color: var(--token-v7qmW4z-kvLQ);
   font-family: var(--token-LpPjQKScegqg);
-  font-size: var(--token-Hpwq6zTbPXsQ);
   line-height: var(--token-mqfztb1uFxzi);
   width: 100%;
   position: relative;
   outline-style: none;
   background: var(--token-kFI90AYWY-Ar);
+  font-size: 14px;
   min-width: 0;
-  border-radius: var(--token-m_ncsQsYKb7X);
+  border-radius: var(--token-hQPSBqQKLLt7);
   padding: var(--token-m_ncsQsYKb7X) var(--token-56MnlmrV6ooZ);
   border-style: none;
 }
@@ -33,15 +33,15 @@
   outline-color: var(--token-v7qmW4z-kvLQ);
 }
 .ariaInputtype_soft:global(.__wab_instance) {
-  background: var(--token-6Gs9iQ4WiuRf);
+  background: var(--token-ZIWYYqB51_gg);
   box-shadow: none;
 }
 .ariaInputtype_soft[data-hovered]:global(.__wab_instance) {
-  background: var(--token-rE-NQ3I6erx7);
-}
-.ariaInputtype_plain:global(.__wab_instance) {
-  box-shadow: none;
   background: var(--token-ZIWYYqB51_gg);
+}
+.ariaInputtype_dark:global(.__wab_instance) {
+  box-shadow: none;
+  background: var(--token-_XLOY8y1n-eS);
 }
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

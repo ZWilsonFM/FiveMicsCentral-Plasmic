@@ -11,9 +11,9 @@ export interface Card {
   /** Card name */
   name: string;
   /** Card type (e.g., "Artist", "Item", "Event") */
-  type: string[];
+  type: string;
   /** Array of subtypes */
-  sub_type: string[];
+  sub_type: string;
   /** Card cost (int2) */
   cost: number;
   /** Attack value (int2) */
@@ -23,11 +23,11 @@ export interface Card {
   /** Card ability text */
   ability: string | null;
   /** Rarity (e.g., "Common", "Rare", "Super Rare") */
-  rarity: string[];
+  rarity: string;
   /** Whether the card is unique (limited to 1 copy) */
   is_unique: boolean;
   /** Array of styles/colors */
-  styles: string[];
+  styles: string;
   /** URL to card artwork image */
   artwork_img_url: string | null;
   /** Illustrator name */

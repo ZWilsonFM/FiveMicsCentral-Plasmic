@@ -80,13 +80,11 @@ export const PlasmicIconFilterButton__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicIconFilterButton__ArgsType = {
-  onClickyClack?: (event: any) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicIconFilterButton__ArgsType;
 export const PlasmicIconFilterButton__ArgProps = new Array<ArgPropType>(
-  "onClickyClack",
   "children",
   "slot"
 );
@@ -97,7 +95,6 @@ export type PlasmicIconFilterButton__OverridesType = {
 };
 
 export interface DefaultIconFilterButtonProps {
-  onClickyClack?: (event: any) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
   selected?: SingleBooleanChoiceArg<"selected">;
@@ -180,7 +177,6 @@ function PlasmicIconFilterButton__RenderFunc(props: {
           [sty.rootselected]: hasVariant($state, "selected", "selected")
         }
       )}
-      onClick={args.onClickyClack}
     >
       {renderPlasmicSlot({
         defaultContents: (

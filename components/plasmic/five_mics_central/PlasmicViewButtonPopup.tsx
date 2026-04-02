@@ -66,7 +66,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/projectcss
 import sty from "./PlasmicViewButtonPopup.module.css"; // plasmic-import: 7hSxhxtE0V17/css
 
-import EyeIcon from "./icons/PlasmicIcon__Eye"; // plasmic-import: k2AtpvGpF7yj/icon
+import EyeBoldIcon from "./icons/PlasmicIcon__EyeBold"; // plasmic-import: k2AtpvGpF7yj/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: gXJpv5gh0fGI/icon
 
 createPlasmicElementProxy;
@@ -89,6 +89,10 @@ export type PlasmicViewButtonPopup__OverridesType = {
   svg?: Flex__<"svg">;
   viewPopup?: Flex__<"div">;
   combobox?: Flex__<typeof Combobox>;
+  menuItem?: Flex__<typeof MenuItem>;
+  menuItem2?: Flex__<typeof MenuItem>;
+  menuItem3?: Flex__<typeof MenuItem>;
+  menuItem4?: Flex__<typeof MenuItem>;
 };
 
 export interface DefaultViewButtonPopupProps {
@@ -227,7 +231,7 @@ function PlasmicViewButtonPopup__RenderFunc(props: {
           }
         }}
         start={
-          <EyeIcon
+          <EyeBoldIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
             className={classNames(projectcss.all, sty.svg)}
@@ -293,13 +297,33 @@ function PlasmicViewButtonPopup__RenderFunc(props: {
             isOpen={generateStateValueProp($state, ["combobox", "isOpen"])}
             items={
               <React.Fragment>
-                <MenuItem label={"Set ID"} value={"Set ID"} />
+                <MenuItem
+                  data-plasmic-name={"menuItem"}
+                  data-plasmic-override={overrides.menuItem}
+                  label={"Set ID"}
+                  value={"Set ID"}
+                />
 
-                <MenuItem label={"Name: A to Z"} value={"A to Z"} />
+                <MenuItem
+                  data-plasmic-name={"menuItem2"}
+                  data-plasmic-override={overrides.menuItem2}
+                  label={"Name: A to Z"}
+                  value={"A to Z"}
+                />
 
-                <MenuItem label={"Name: Z to A"} value={"Z to A"} />
+                <MenuItem
+                  data-plasmic-name={"menuItem3"}
+                  data-plasmic-override={overrides.menuItem3}
+                  label={"Name: Z to A"}
+                  value={"Z to A"}
+                />
 
-                <MenuItem label={"Rarity"} value={"Rarity"} />
+                <MenuItem
+                  data-plasmic-name={"menuItem4"}
+                  data-plasmic-override={overrides.menuItem4}
+                  label={"Rarity"}
+                  value={"Rarity"}
+                />
               </React.Fragment>
             }
             label={
@@ -312,7 +336,9 @@ function PlasmicViewButtonPopup__RenderFunc(props: {
               >
                 <React.Fragment>
                   <span
-                    className={"plasmic_default__all plasmic_default__span"}
+                    className={
+                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                    }
                     style={{ color: "#F4F4F5" }}
                   >
                     {"Sort By"}
@@ -357,11 +383,32 @@ function PlasmicViewButtonPopup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "viewButton", "svg", "viewPopup", "combobox"],
+  root: [
+    "root",
+    "viewButton",
+    "svg",
+    "viewPopup",
+    "combobox",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
+  ],
   viewButton: ["viewButton", "svg"],
   svg: ["svg"],
-  viewPopup: ["viewPopup", "combobox"],
-  combobox: ["combobox"]
+  viewPopup: [
+    "viewPopup",
+    "combobox",
+    "menuItem",
+    "menuItem2",
+    "menuItem3",
+    "menuItem4"
+  ],
+  combobox: ["combobox", "menuItem", "menuItem2", "menuItem3", "menuItem4"],
+  menuItem: ["menuItem"],
+  menuItem2: ["menuItem2"],
+  menuItem3: ["menuItem3"],
+  menuItem4: ["menuItem4"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -372,6 +419,10 @@ type NodeDefaultElementType = {
   svg: "svg";
   viewPopup: "div";
   combobox: typeof Combobox;
+  menuItem: typeof MenuItem;
+  menuItem2: typeof MenuItem;
+  menuItem3: typeof MenuItem;
+  menuItem4: typeof MenuItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -440,6 +491,10 @@ export const PlasmicViewButtonPopup = Object.assign(
     svg: makeNodeComponent("svg"),
     viewPopup: makeNodeComponent("viewPopup"),
     combobox: makeNodeComponent("combobox"),
+    menuItem: makeNodeComponent("menuItem"),
+    menuItem2: makeNodeComponent("menuItem2"),
+    menuItem3: makeNodeComponent("menuItem3"),
+    menuItem4: makeNodeComponent("menuItem4"),
 
     // Metadata about props expected for PlasmicViewButtonPopup
     internalVariantProps: PlasmicViewButtonPopup__VariantProps,

@@ -683,7 +683,7 @@
     {
       "name": "FM/Background",
       "type": "color",
-      "value": "#1B1C31",
+      "value": "#11142B",
       "category": "color",
       "meta": {
         "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
@@ -741,9 +741,19 @@
       }
     },
     {
+      "name": "FM/Secondary",
+      "type": "color",
+      "value": "#33A9DB",
+      "category": "color",
+      "meta": {
+        "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+        "id": "3hYDfmVZ1orH"
+      }
+    },
+    {
       "name": "FM/Surface",
       "type": "color",
-      "value": "#292B51",
+      "value": "#20224A",
       "category": "color",
       "meta": {
         "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
@@ -758,6 +768,16 @@
       "meta": {
         "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
         "id": "zg0CpvHtSPwh"
+      }
+    },
+    {
+      "name": "FM/Surface-Variant",
+      "type": "color",
+      "value": "#14172E",
+      "category": "color",
+      "meta": {
+        "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+        "id": "MCQDM119Y7WI"
       }
     },
     {

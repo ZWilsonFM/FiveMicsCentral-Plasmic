@@ -69,10 +69,16 @@ import MinusIcon from "./icons/PlasmicIcon__Minus"; // plasmic-import: f8iR-AOO6
 
 createPlasmicElementProxy;
 
-export type PlasmicCheckbox__VariantMembers = {};
-export type PlasmicCheckbox__VariantsArgs = {};
+export type PlasmicCheckbox__VariantMembers = {
+  noHoverColor: "noHoverColor";
+};
+export type PlasmicCheckbox__VariantsArgs = {
+  noHoverColor?: SingleBooleanChoiceArg<"noHoverColor">;
+};
 type VariantPropType = keyof PlasmicCheckbox__VariantsArgs;
-export const PlasmicCheckbox__VariantProps = new Array<VariantPropType>();
+export const PlasmicCheckbox__VariantProps = new Array<VariantPropType>(
+  "noHoverColor"
+);
 
 export type PlasmicCheckbox__ArgsType = {
   value?: string;
@@ -109,6 +115,7 @@ export interface DefaultCheckboxProps {
   onChange?: (val: boolean) => void;
   label?: React.ReactNode;
   defaultSelected?: boolean;
+  noHoverColor?: SingleBooleanChoiceArg<"noHoverColor">;
   className?: string;
 }
 
@@ -153,6 +160,13 @@ function PlasmicCheckbox__RenderFunc(props: {
 
         valueProp: "isSelected",
         onChangeProp: "onChange"
+      },
+      {
+        path: "noHoverColor",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.noHoverColor
       }
     ],
     [$props, $ctx, $refs]
@@ -205,7 +219,14 @@ function PlasmicCheckbox__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.ariaCheckbox
+        sty.ariaCheckbox,
+        {
+          [sty.ariaCheckboxnoHoverColor]: hasVariant(
+            $state,
+            "noHoverColor",
+            "noHoverColor"
+          )
+        }
       )}
       defaultSelected={false}
       isDisabled={args.disabled}
@@ -223,8 +244,24 @@ function PlasmicCheckbox__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
-      <div className={classNames(projectcss.all, sty.freeBox___8TdS7)}>
-        <div className={classNames(projectcss.all, sty.freeBox__bu4LN)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox___8TdS7, {
+          [sty.freeBoxnoHoverColor___8TdS7UXaeD]: hasVariant(
+            $state,
+            "noHoverColor",
+            "noHoverColor"
+          )
+        })}
+      >
+        <div
+          className={classNames(projectcss.all, sty.freeBox__bu4LN, {
+            [sty.freeBoxnoHoverColor__bu4LNuXaeD]: hasVariant(
+              $state,
+              "noHoverColor",
+              "noHoverColor"
+            )
+          })}
+        >
           {(
             $ccVariants["selected"] && $ccVariants["indeterminate"]
               ? false
@@ -255,7 +292,9 @@ function PlasmicCheckbox__RenderFunc(props: {
             >
               <React.Fragment>
                 <span
-                  className={"plasmic_default__all plasmic_default__span"}
+                  className={
+                    "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                  }
                   style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                 >
                   {"Option"}
@@ -263,7 +302,8 @@ function PlasmicCheckbox__RenderFunc(props: {
               </React.Fragment>
             </div>
           ),
-          value: args.label
+          value: args.label,
+          className: classNames(sty.slotTargetLabel)
         })}
       </div>
     </BaseCheckbox>

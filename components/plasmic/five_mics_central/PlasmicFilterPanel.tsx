@@ -367,13 +367,16 @@ function PlasmicFilterPanel__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.h5,
+                  projectcss.h5__jSxoi,
                   projectcss.__wab_text,
                   sty.h5__hrcXx
                 )}
               >
                 <React.Fragment>
                   <span
-                    className={"plasmic_default__all plasmic_default__span"}
+                    className={
+                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                    }
                     style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                   >
                     {"Cost"}
@@ -630,13 +633,16 @@ function PlasmicFilterPanel__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.h5,
+                  projectcss.h5__jSxoi,
                   projectcss.__wab_text,
                   sty.h5__bgBMs
                 )}
               >
                 <React.Fragment>
                   <span
-                    className={"plasmic_default__all plasmic_default__span"}
+                    className={
+                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                    }
                     style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                   >
                     {"Rarity"}
@@ -707,7 +713,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"1 - Common"}
@@ -750,7 +758,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"2 - Uncommon"}
@@ -793,7 +803,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"3 - Rare"}
@@ -836,7 +848,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"4 - Epic"}
@@ -879,7 +893,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"5 - Super"}
@@ -927,13 +943,16 @@ function PlasmicFilterPanel__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.h5,
+                  projectcss.h5__jSxoi,
                   projectcss.__wab_text,
                   sty.h5__sVx3L
                 )}
               >
                 <React.Fragment>
                   <span
-                    className={"plasmic_default__all plasmic_default__span"}
+                    className={
+                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                    }
                     style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                   >
                     {"Rarity"}
@@ -1004,7 +1023,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"Afterdeath"}
@@ -1047,7 +1068,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"Cut"}
@@ -1090,7 +1113,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Draw"}
@@ -1133,7 +1158,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Erase"}
@@ -1176,7 +1203,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Fly"}
@@ -1219,7 +1248,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Heal"}
@@ -1262,7 +1293,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Invest"}
@@ -1305,7 +1338,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Protect"}
@@ -1348,7 +1383,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Reup"}
@@ -1391,7 +1428,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Start"}
@@ -1434,7 +1473,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Play"}
@@ -1477,7 +1518,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"End"}
@@ -1520,7 +1563,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Choose"}
@@ -1563,7 +1608,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Choose One"}
@@ -1606,7 +1653,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Ongoing"}
@@ -1649,7 +1698,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "#F4F4F5" }}
                       >
                         {"Trap"}
@@ -1697,13 +1748,16 @@ function PlasmicFilterPanel__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.h5,
+                  projectcss.h5__jSxoi,
                   projectcss.__wab_text,
                   sty.h5__ypp7
                 )}
               >
                 <React.Fragment>
                   <span
-                    className={"plasmic_default__all plasmic_default__span"}
+                    className={
+                      "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                    }
                     style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                   >
                     {"Set"}
@@ -1775,7 +1829,9 @@ function PlasmicFilterPanel__RenderFunc(props: {
                   >
                     <React.Fragment>
                       <span
-                        className={"plasmic_default__all plasmic_default__span"}
+                        className={
+                          "plasmic_default__all plasmic_default__span plasmic_default__span__jSxoi"
+                        }
                         style={{ color: "var(--token-v7qmW4z-kvLQ)" }}
                       >
                         {"Genesis"}

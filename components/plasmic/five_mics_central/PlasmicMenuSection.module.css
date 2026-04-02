@@ -11,6 +11,40 @@
   flex-direction: row;
   padding: var(--token-TehE4cTaM45d) var(--token-m_ncsQsYKb7X);
 }
+.freeBoxnoHeader {
+  display: none;
+}
 .slotTargetHeader {
   font-weight: 600;
+  color: var(--token-AqOCY_C21mcv);
+  font-family: var(--token-LpPjQKScegqg);
+  font-size: var(--token-qCqmumvtKYQR);
+}
+.menuItem__tXcN1:global(.__wab_instance):global(.__wab_instance) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.svg___7MaL {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  width: 20px;
+  height: 20px;
+  color: var(--token-AqOCY_C21mcv);
+}
+.svg__cNjqa {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  width: 20px;
+  height: 20px;
+  color: var(--token-AqOCY_C21mcv);
+}
+.svg__qNuJ0 {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  width: 20px;
+  height: 20px;
+  color: var(--token-AqOCY_C21mcv);
 }

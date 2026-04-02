@@ -65,6 +65,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/projectcss
 import sty from "./PlasmicSwitch.module.css"; // plasmic-import: udub3QnonLj3/css
 
+import HeartIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Heart"; // plasmic-import: Pd6Ep5K1aJd-/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicSwitch__VariantMembers = {};
@@ -101,6 +103,7 @@ export type PlasmicSwitch__OverridesType = {
   freeBox?: Flex__<"div">;
   switchIndicator?: Flex__<"div">;
   thumb?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   description?: Flex__<typeof Description>;
 };
 
@@ -241,6 +244,13 @@ function PlasmicSwitch__RenderFunc(props: {
             className={classNames(projectcss.all, sty.thumb)}
           />
         </div>
+        <HeartIcon
+          data-plasmic-name={"svg"}
+          data-plasmic-override={overrides.svg}
+          className={classNames(projectcss.all, sty.svg)}
+          role={"img"}
+        />
+
         {$props.showLabel
           ? renderPlasmicSlot({
               defaultContents: "Label",
@@ -265,11 +275,13 @@ const PlasmicDescendants = {
     "freeBox",
     "switchIndicator",
     "thumb",
+    "svg",
     "description"
   ],
-  freeBox: ["freeBox", "switchIndicator", "thumb"],
+  freeBox: ["freeBox", "switchIndicator", "thumb", "svg"],
   switchIndicator: ["switchIndicator", "thumb"],
   thumb: ["thumb"],
+  svg: ["svg"],
   description: ["description"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -280,6 +292,7 @@ type NodeDefaultElementType = {
   freeBox: "div";
   switchIndicator: "div";
   thumb: "div";
+  svg: "svg";
   description: typeof Description;
 };
 
@@ -348,6 +361,7 @@ export const PlasmicSwitch = Object.assign(
     freeBox: makeNodeComponent("freeBox"),
     switchIndicator: makeNodeComponent("switchIndicator"),
     thumb: makeNodeComponent("thumb"),
+    svg: makeNodeComponent("svg"),
     description: makeNodeComponent("description"),
 
     // Metadata about props expected for PlasmicSwitch

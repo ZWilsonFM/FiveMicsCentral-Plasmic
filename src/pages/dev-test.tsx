@@ -207,7 +207,7 @@ export default function DevTestPage() {
               </div>
               <div style={{ color: '#6b7280', fontSize: '0.8rem' }}>
                 {card.type}
-                {card.styles.length > 0 && ` • ${card.styles.join(', ')}`}
+                {card.styles.length > 0 && ` • ${card.styles}`}
               </div>
               {card.type[0] == "Artist" && (<div
                 style={{

@@ -53,9 +53,7 @@ export function useDeckStats(deckCards: DeckCard[]): DeckStats {
     // Style/color breakdown
     const styleBreakdown: Record<string, number> = {};
     mainDeckCards.forEach((card) => {
-      card.styles.forEach((style) => {
-        styleBreakdown[style] = (styleBreakdown[style] || 0) + card.quantity;
-      });
+      styleBreakdown[card.styles] = (styleBreakdown[card.styles] || 0) + card.quantity;
     });
 
     // Average cost calculation (main deck only, excluding leader)

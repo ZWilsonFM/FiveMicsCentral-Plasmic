@@ -1,0 +1,70 @@
+.tag {
+  display: inline-flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--token-5vVExEA_D6rl);
+  position: relative;
+  column-gap: 4px;
+  border-radius: var(--token-TpTK_2GoKeuX);
+  padding: 4px 8px;
+}
+.tageventStatus_registerOpen {
+  background: var(--token-zNy5dTqaDBJU);
+}
+.tageventStatus_registerClosed {
+  background: var(--token-GKqjGFiwvEgU);
+}
+.tageventStatus_started {
+  background: var(--token-Fh8yz2VaZHlR);
+}
+.tageventStatus_ended {
+  background: var(--token-47XUuFrc7S8X);
+}
+.tageventStatus_webcamLive {
+  background: var(--token-eBVTO_mnpQ4r);
+}
+.tagdeckStatus__public {
+  background: #16653480;
+  padding-right: 10px;
+  border-radius: var(--token--cbTwI-_-2-d);
+}
+.tagdeckStatus__private {
+  background: #1f293780;
+  padding-right: 10px;
+  border-radius: var(--token--cbTwI-_-2-d);
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: 12px;
+  height: 12px;
+  color: var(--token-v7qmW4z-kvLQ);
+  flex-shrink: 0;
+  display: none;
+}
+.svgeventStatus_registerOpen {
+  display: none;
+}
+.svgdeckStatus__public {
+  display: block;
+}
+.svgdeckStatus__private {
+  display: block;
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: var(--token-LpPjQKScegqg);
+  font-weight: 400;
+  font-size: var(--token-qCqmumvtKYQR);
+  min-width: 0;
+}
+.texteventStatus_ended {
+  opacity: 0.5;
+}

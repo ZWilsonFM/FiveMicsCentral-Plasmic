@@ -5,11 +5,11 @@
 import React from "react";
 import { classNames } from "@plasmicapp/react-web";
 
-export type ExitArrowIconProps = React.ComponentProps<"svg"> & {
+export type RecordIconProps = React.ComponentProps<"svg"> & {
   title?: string;
 };
 
-export function ExitArrowIcon(props: ExitArrowIconProps) {
+export function RecordIcon(props: RecordIconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
@@ -25,12 +25,12 @@ export function ExitArrowIcon(props: ExitArrowIconProps) {
 
       <path
         d={
-          "M236 144a68.07 68.07 0 0 1-68 68H80a12 12 0 0 1 0-24h88a44 44 0 0 0 0-88H61l27.52 27.51a12 12 0 0 1-17 17l-48-48a12 12 0 0 1 0-17l48-48a12 12 0 1 1 17 17L61 76h107a68.08 68.08 0 0 1 68 68"
+          "M232 208a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8V48a8 8 0 0 1 16 0v94.37L90.73 98a8 8 0 0 1 10.07-.38l58.81 44.11L218.73 90a8 8 0 1 1 10.54 12l-64 56a8 8 0 0 1-10.07.38l-58.81-44.09L40 163.63V200h184a8 8 0 0 1 8 8"
         }
       ></path>
     </svg>
   );
 }
 
-export default ExitArrowIcon;
+export default RecordIcon;
 /* prettier-ignore-end */

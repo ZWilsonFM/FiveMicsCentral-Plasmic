@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: auto;
@@ -47,6 +47,9 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 0;
+}
+.ariaCheckboxnoHoverColor[data-hovered] .freeBoxnoHoverColor___8TdS7UXaeD {
+  background: none;
 }
 .freeBox__bu4LN {
   width: var(--token--cbTwI-_-2-d);
@@ -74,6 +77,11 @@
   background: var(--token-BpJ5GLD1xIxs);
   border-color: var(--token-BpJ5GLD1xIxs);
 }
+.freeBoxnoHoverColor__bu4LNuXaeD {
+  width: var(--token-56MnlmrV6ooZ);
+  height: var(--token-56MnlmrV6ooZ);
+  flex-shrink: 0;
+}
 .svg__jZkCg {
   position: relative;
   color: #ffffff;
@@ -91,4 +99,15 @@
 }
 .ariaCheckbox[data-indeterminate] .svg__jm4QF {
   display: block;
+}
+.slotTargetLabel {
+  font-family: var(--token-LpPjQKScegqg);
+  font-size: var(--token-Hpwq6zTbPXsQ);
+  font-weight: 500;
+}
+.text__zZhKe {
+  white-space: pre-wrap;
+  height: auto;
+  font-size: var(--token-3I6YKcishaa3);
+  font-weight: 500;
 }

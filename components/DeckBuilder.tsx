@@ -10,7 +10,7 @@ import { useDeckState } from '@/hooks/useDeckState';
 import { useCards } from '@/hooks/useCards';
 import { useCardFilters } from '@/hooks/useCardFilters';
 import { useDeckStats } from '@/hooks/useDeckStats';
-import PlasmicCardComponent from "./plasmic/five_mics_central/PlasmicCard";
+import Card from "./Card";
 import PlasmicCardFilterRow from "./plasmic/fm_central/PlasmicCardFilterRow";
 
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
@@ -47,6 +47,35 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
   } = useCardFilters(cards);
   const stats = useDeckStats(deck.cards);
 
+  const availableCardsList = React.useMemo(() => {
+    return filteredCards
+        .filter((card) => !!card.preview_image?.trim())
+        .slice(0, 100)
+        .map((card) => (
+            <Card
+                key={card.id}
+                card={card}
+                currentAmountInDeck={
+                    deck.cards.find((c) => c.id === card.id)?.quantity || 0
+                }
+                onAdd={addCard}
+                onRemove={removeCard}
+            />
+        ));
+  }, [filteredCards, deck.cards, addCard, removeCard]);
+
+  const deckCardsList = React.useMemo(() => {
+    return deck.cards.map((card) => (
+        <Card
+              key={card.id}
+              card={card}
+              currentAmountInDeck={deck.cards.find((c) => c.id === card.id)?.quantity || 0}
+              onAdd={addCard}
+              onRemove={removeCard}
+        />
+    ));
+  }, [deck.cards, addCard, removeCard]);
+
   if (isLoading) {
     return (
         <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -57,42 +86,50 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
   }
 
   return <PlasmicDeckBuilder
+      root={{ ref }}
       {...props}
-      root={{ ref,
-      artists: <IconFilterButton onClickyClack={ () => {console.log("artist selected");}}/>
-      }}
-      /*artists={{onClick: () => {console.log("artist selected")}}}*/
-      /*events={{onChange: () => toggleType("events")}}
-      items={{onChange: () => toggleType("items")}}*/
-      availableCardsDisplayContainer={
-      <PlasmicDeckBuilder.availableCardsDisplayContainer cards={{
-        children: filteredCards
-            .filter((card) => !!card.preview_image?.trim())
-            .slice(0, 100)
-            .map((card) => (
-                <PlasmicCardComponent
-                    isUnique={card.is_unique}
-                    previewImageUrl={card.preview_image}
-                    currentAmountInDeck={
-                        deck.cards.find((c) => c.id === card.id)?.quantity || 0
-                    }
+      artists={{onClick: () => toggleType("Artist"), selected: filters.types.includes("Artist")}}
+      events={{onClick: () => toggleType("Event"), selected: filters.types.includes("Event")}}
+      items={{onClick: () => toggleType("Item"), selected: filters.types.includes("Item")}}
+      chill={{onClick: () => toggleStyle("Chill"), selected: filters.styles.includes("Chill")}}
+      hardcore={{onClick: () => toggleStyle("Hardcore"), selected: filters.styles.includes("Hardcore")}}
+      conscious={{onClick: () => toggleStyle("Conscious"), selected: filters.styles.includes("Conscious")}}
+      emo={{onClick: () => toggleStyle("Emo"), selected: filters.styles.includes("Freestyle")}}
+      freestyle={{onClick: () => toggleStyle("Freestyle"), selected: filters.styles.includes("Emo")}}
+      party={{onClick: () => toggleStyle("Party"), selected: filters.styles.includes("Party")}}
 
-                    plusButton={{onClick: () => addCard(card)}}
-                    minusButton={{onClick: () => removeCard(card.id)}}
-                />
-            )),
-      }}/>}
 
-      cardsInDeck={{ children: deck.cards.map((card) => (
-              <PlasmicCardComponent
-                    isUnique={card.is_unique}
-                    previewImageUrl={card.preview_image}
-                    currentAmountInDeck={deck.cards.find((c) => c.id === card.id)?.quantity || 0}
-                    plusButton={{onClick: () => addCard(card)}}
-                    minusButton={{onClick: () => removeCard(card.id)}}
-              />
-          ))
+      cost0={{onClick: () => toggleCost(0), selected: filters.costs.includes(0)}}
+      cost1={{onClick: () => toggleCost(1), selected: filters.costs.includes(1)}}
+      cost2={{onClick: () => toggleCost(2), selected: filters.costs.includes(2)}}
+      cost3={{onClick: () => toggleCost(3), selected: filters.costs.includes(3)}}
+      cost4={{onClick: () => toggleCost(4), selected: filters.costs.includes(4)}}
+      cost5={{onClick: () => toggleCost(5), selected: filters.costs.includes(5)}}
+      cost6={{onClick: () => toggleCost(6), selected: filters.costs.includes(6)}}
+      cost7={{onClick: () => toggleCost(7), selected: filters.costs.includes(7)}}
+      cost8={{onClick: () => toggleCost(8), selected: filters.costs.includes(8)}}
+      cost9={{onClick: () => toggleCost(9), selected: filters.costs.includes(9)}}
+      cost10={{onClick: () => toggleCost(10), selected: filters.costs.includes(10)}}
+
+      added2={{text: 5}}
+
+      searchInput={{onChange: (e) =>{
+          if(e?.length > 2){
+              console.log(e);
+              setSearch(e);
+          }
+          else
+          {
+              setSearch("");
+          }
+
+          }}}
+
+      cards={{
+        children: availableCardsList,
       }}
+
+      cardsInDeck={{ children: deckCardsList }}
 
   />;
 }

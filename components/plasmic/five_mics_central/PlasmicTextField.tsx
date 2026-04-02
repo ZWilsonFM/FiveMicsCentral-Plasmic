@@ -59,6 +59,7 @@ import { BaseTextField } from "@plasmicpkgs/react-aria/skinny/registerTextField"
 import Label from "../../Label"; // plasmic-import: 4T2zpPUKDSg2/component
 import TextInput from "../../TextInput"; // plasmic-import: a3kKYHRv45O8/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: o4Bd6Ojyaw2R/component
+import Button from "../../Button"; // plasmic-import: 6jE3Dsyufpzc/component
 import Description from "../../Description"; // plasmic-import: 7f5EsQVQs4v0/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: jSxoiQqAMnTEnPC4J2Lddc/styleTokensProvider
@@ -69,6 +70,9 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: jSxoiQqAMnTEnP
 import sty from "./PlasmicTextField.module.css"; // plasmic-import: 82GMDV9HJSwh/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: qeEPMvkO-Vjm/icon
+import EyeIcon from "./icons/PlasmicIcon__Eye"; // plasmic-import: V3pMqAykBAYF/icon
+import EyeSlashedIcon from "./icons/PlasmicIcon__EyeSlashed"; // plasmic-import: S4XlH-T8PaqP/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: gXJpv5gh0fGI/icon
 
 createPlasmicElementProxy;
 
@@ -76,17 +80,26 @@ export type PlasmicTextField__VariantMembers = {
   multiLine: "multiLine";
   iconStart: "iconStart";
   iconEnd: "iconEnd";
+  password: "hidePassword" | "showPassword";
+  onlyInput: "onlyInput";
+  dark: "dark";
 };
 export type PlasmicTextField__VariantsArgs = {
   multiLine?: SingleBooleanChoiceArg<"multiLine">;
   iconStart?: SingleBooleanChoiceArg<"iconStart">;
   iconEnd?: SingleBooleanChoiceArg<"iconEnd">;
+  password?: SingleChoiceArg<"hidePassword" | "showPassword">;
+  onlyInput?: SingleBooleanChoiceArg<"onlyInput">;
+  dark?: SingleBooleanChoiceArg<"dark">;
 };
 type VariantPropType = keyof PlasmicTextField__VariantsArgs;
 export const PlasmicTextField__VariantProps = new Array<VariantPropType>(
   "multiLine",
   "iconStart",
-  "iconEnd"
+  "iconEnd",
+  "password",
+  "onlyInput",
+  "dark"
 );
 
 export type PlasmicTextField__ArgsType = {
@@ -169,6 +182,7 @@ export type PlasmicTextField__ArgsType = {
     | "webauthn";
   ariaLabel?: string;
   onChange?: (val: string) => void;
+  textInputComponentType?: string;
   label?: React.ReactNode;
   start?: React.ReactNode;
   end?: React.ReactNode;
@@ -188,6 +202,7 @@ export const PlasmicTextField__ArgProps = new Array<ArgPropType>(
   "autoComplete",
   "ariaLabel",
   "onChange",
+  "textInputComponentType",
   "label",
   "start",
   "end",
@@ -199,6 +214,8 @@ export type PlasmicTextField__OverridesType = {
   label?: Flex__<typeof Label>;
   textInput?: Flex__<typeof TextInput>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
+  showButton?: Flex__<typeof Button>;
+  hideButton?: Flex__<typeof Button>;
   description?: Flex__<typeof Description>;
 };
 
@@ -282,6 +299,7 @@ export interface DefaultTextFieldProps {
     | "webauthn";
   ariaLabel?: string;
   onChange?: (val: string) => void;
+  textInputComponentType?: string;
   label?: React.ReactNode;
   start?: React.ReactNode;
   end?: React.ReactNode;
@@ -289,6 +307,9 @@ export interface DefaultTextFieldProps {
   multiLine?: SingleBooleanChoiceArg<"multiLine">;
   iconStart?: SingleBooleanChoiceArg<"iconStart">;
   iconEnd?: SingleBooleanChoiceArg<"iconEnd">;
+  password?: SingleChoiceArg<"hidePassword" | "showPassword">;
+  onlyInput?: SingleBooleanChoiceArg<"onlyInput">;
+  dark?: SingleBooleanChoiceArg<"dark">;
   className?: string;
 }
 
@@ -366,6 +387,24 @@ function PlasmicTextField__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "password",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.password
+      },
+      {
+        path: "onlyInput",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.onlyInput
+      },
+      {
+        path: "dark",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.dark
       }
     ],
     [$props, $ctx, $refs]
@@ -415,6 +454,7 @@ function PlasmicTextField__RenderFunc(props: {
         styleTokensClassNames,
         sty.ariaTextField,
         {
+          [sty.ariaTextFielddark]: hasVariant($state, "dark", "dark"),
           [sty.ariaTextFieldiconEnd]: hasVariant($state, "iconEnd", "iconEnd"),
           [sty.ariaTextFieldiconStart]: hasVariant(
             $state,
@@ -428,6 +468,21 @@ function PlasmicTextField__RenderFunc(props: {
             $state,
             "multiLine",
             "multiLine"
+          ),
+          [sty.ariaTextFieldonlyInput]: hasVariant(
+            $state,
+            "onlyInput",
+            "onlyInput"
+          ),
+          [sty.ariaTextFieldpassword_hidePassword]: hasVariant(
+            $state,
+            "password",
+            "hidePassword"
+          ),
+          [sty.ariaTextFieldpassword_showPassword]: hasVariant(
+            $state,
+            "password",
+            "showPassword"
           )
         }
       )}
@@ -441,20 +496,36 @@ function PlasmicTextField__RenderFunc(props: {
         );
       }}
       plasmicUpdateVariant={updateVariant}
-      type={args.type}
+      type={
+        hasVariant($state, "password", "showPassword")
+          ? "text"
+          : hasVariant($state, "password", "hidePassword")
+            ? "password"
+            : undefined
+      }
       value={generateStateValueProp($state, ["ariaTextField", "value"])}
     >
-      {$props.showLabel ? (
+      {(
+        hasVariant($state, "onlyInput", "onlyInput") ? true : $props.showLabel
+      ) ? (
         <Label
           data-plasmic-name={"label"}
           data-plasmic-override={overrides.label}
           className={classNames("__wab_instance", sty.label, {
-            [sty.labelmultiLine]: hasVariant($state, "multiLine", "multiLine")
+            [sty.labelmultiLine]: hasVariant($state, "multiLine", "multiLine"),
+            [sty.labelonlyInput]: hasVariant($state, "onlyInput", "onlyInput")
           })}
         >
           {renderPlasmicSlot({
             defaultContents: "Label",
-            value: args.label
+            value: args.label,
+            className: classNames(sty.slotTargetLabel, {
+              [sty.slotTargetLabelmultiLine]: hasVariant(
+                $state,
+                "multiLine",
+                "multiLine"
+              )
+            })
           })}
         </Label>
       ) : null}
@@ -509,10 +580,26 @@ function PlasmicTextField__RenderFunc(props: {
             })
           })}
         </div>
-        {(hasVariant($state, "multiLine", "multiLine") ? false : true) ? (
+        {(
+          hasVariant($state, "iconStart", "iconStart")
+            ? true
+            : hasVariant($state, "multiLine", "multiLine")
+              ? false
+              : true
+        ) ? (
           <TextInput
             data-plasmic-name={"textInput"}
             data-plasmic-override={overrides.textInput}
+            className={classNames("__wab_instance", {
+              [sty.textInputiconStart]: hasVariant(
+                $state,
+                "iconStart",
+                "iconStart"
+              ),
+              [sty.textInputiconStart_iconEnd]:
+                hasVariant($state, "iconStart", "iconStart") &&
+                hasVariant($state, "iconEnd", "iconEnd")
+            })}
             disabled={$ccVariants["disabled"] ? true : undefined}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["textInput", "value"]).apply(
@@ -539,6 +626,7 @@ function PlasmicTextField__RenderFunc(props: {
                     : undefined
             }
             placeholder={args.placeholder}
+            type={hasVariant($state, "dark", "dark") ? "dark" : undefined}
             value={generateStateValueProp($state, ["textInput", "value"])}
           />
         ) : null}
@@ -604,9 +692,162 @@ function PlasmicTextField__RenderFunc(props: {
             ),
 
             value: args.end,
-            className: classNames(sty.slotTargetEnd)
+            className: classNames(sty.slotTargetEnd, {
+              [sty.slotTargetEndiconEnd]: hasVariant(
+                $state,
+                "iconEnd",
+                "iconEnd"
+              )
+            })
           })}
         </div>
+        <Button
+          data-plasmic-name={"showButton"}
+          data-plasmic-override={overrides.showButton}
+          className={classNames("__wab_instance", sty.showButton, {
+            [sty.showButtonpassword_hidePassword]: hasVariant(
+              $state,
+              "password",
+              "hidePassword"
+            ),
+            [sty.showButtonpassword_showPassword]: hasVariant(
+              $state,
+              "password",
+              "showPassword"
+            )
+          })}
+          iconOnly={true}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updatePassword"] = true
+              ? (() => {
+                  const actionArgs = {
+                    vgroup: "password",
+                    operation: 0,
+                    value: "showPassword"
+                  };
+                  return (({ vgroup, value }) => {
+                    if (typeof value === "string") {
+                      value = [value];
+                    }
+
+                    $stateSet($state, vgroup, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updatePassword"] != null &&
+              typeof $steps["updatePassword"] === "object" &&
+              typeof $steps["updatePassword"].then === "function"
+            ) {
+              $steps["updatePassword"] = await $steps["updatePassword"];
+            }
+          }}
+          roundedFull={true}
+          start={
+            <PlasmicIcon__
+              PlasmicIconType={
+                hasVariant($state, "password", "showPassword")
+                  ? EyeSlashedIcon
+                  : EyeIcon
+              }
+              className={classNames(projectcss.all, sty.svg__wmfTl, {
+                [sty.svgpassword_hidePassword__wmfTll7Cl7]: hasVariant(
+                  $state,
+                  "password",
+                  "hidePassword"
+                ),
+                [sty.svgpassword_showPassword__wmfTlcGoNz]: hasVariant(
+                  $state,
+                  "password",
+                  "showPassword"
+                )
+              })}
+              role={"img"}
+            />
+          }
+          type={"noFill"}
+        />
+
+        {(
+          hasVariant($state, "password", "showPassword")
+            ? true
+            : hasVariant($state, "password", "hidePassword")
+              ? true
+              : false
+        ) ? (
+          <Button
+            data-plasmic-name={"hideButton"}
+            data-plasmic-override={overrides.hideButton}
+            className={classNames("__wab_instance", sty.hideButton, {
+              [sty.hideButtonpassword_hidePassword]: hasVariant(
+                $state,
+                "password",
+                "hidePassword"
+              ),
+              [sty.hideButtonpassword_showPassword]: hasVariant(
+                $state,
+                "password",
+                "showPassword"
+              )
+            })}
+            iconOnly={true}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updatePassword"] = true
+                ? (() => {
+                    const actionArgs = {
+                      vgroup: "password",
+                      operation: 0,
+                      value: "hidePassword"
+                    };
+                    return (({ vgroup, value }) => {
+                      if (typeof value === "string") {
+                        value = [value];
+                      }
+
+                      $stateSet($state, vgroup, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updatePassword"] != null &&
+                typeof $steps["updatePassword"] === "object" &&
+                typeof $steps["updatePassword"].then === "function"
+              ) {
+                $steps["updatePassword"] = await $steps["updatePassword"];
+              }
+            }}
+            roundedFull={true}
+            start={
+              <PlasmicIcon__
+                PlasmicIconType={
+                  hasVariant($state, "password", "showPassword")
+                    ? EyeSlashedIcon
+                    : EyeIcon
+                }
+                className={classNames(projectcss.all, sty.svg__xj9Rq, {
+                  [sty.svgpassword_hidePassword__xj9RQl7Cl7]: hasVariant(
+                    $state,
+                    "password",
+                    "hidePassword"
+                  ),
+                  [sty.svgpassword_showPassword__xj9RQcGoNz]: hasVariant(
+                    $state,
+                    "password",
+                    "showPassword"
+                  )
+                })}
+                role={"img"}
+              />
+            }
+            type={"noFill"}
+          />
+        ) : null}
       </div>
       {$props.showDescription ? (
         <Description
@@ -630,11 +871,15 @@ const PlasmicDescendants = {
     "label",
     "textInput",
     "textAreaInput",
+    "showButton",
+    "hideButton",
     "description"
   ],
   label: ["label"],
   textInput: ["textInput"],
   textAreaInput: ["textAreaInput"],
+  showButton: ["showButton"],
+  hideButton: ["hideButton"],
   description: ["description"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -645,6 +890,8 @@ type NodeDefaultElementType = {
   label: typeof Label;
   textInput: typeof TextInput;
   textAreaInput: typeof TextAreaInput;
+  showButton: typeof Button;
+  hideButton: typeof Button;
   description: typeof Description;
 };
 
@@ -713,6 +960,8 @@ export const PlasmicTextField = Object.assign(
     label: makeNodeComponent("label"),
     textInput: makeNodeComponent("textInput"),
     textAreaInput: makeNodeComponent("textAreaInput"),
+    showButton: makeNodeComponent("showButton"),
+    hideButton: makeNodeComponent("hideButton"),
     description: makeNodeComponent("description"),
 
     // Metadata about props expected for PlasmicTextField

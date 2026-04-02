@@ -68,21 +68,32 @@ import sty from "./PlasmicMenuItem.module.css"; // plasmic-import: 3vE2gi5oOFPv/
 
 createPlasmicElementProxy;
 
-export type PlasmicMenuItem__VariantMembers = {};
-export type PlasmicMenuItem__VariantsArgs = {};
+export type PlasmicMenuItem__VariantMembers = {
+  type: "noIcon";
+  selected: "selected";
+};
+export type PlasmicMenuItem__VariantsArgs = {
+  type?: SingleChoiceArg<"noIcon">;
+  selected?: SingleBooleanChoiceArg<"selected">;
+};
 type VariantPropType = keyof PlasmicMenuItem__VariantsArgs;
-export const PlasmicMenuItem__VariantProps = new Array<VariantPropType>();
+export const PlasmicMenuItem__VariantProps = new Array<VariantPropType>(
+  "type",
+  "selected"
+);
 
 export type PlasmicMenuItem__ArgsType = {
   value?: string;
   label?: string;
   description?: string;
+  icon?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicMenuItem__ArgsType;
 export const PlasmicMenuItem__ArgProps = new Array<ArgPropType>(
   "value",
   "label",
-  "description"
+  "description",
+  "icon"
 );
 
 export type PlasmicMenuItem__OverridesType = {
@@ -95,6 +106,9 @@ export interface DefaultMenuItemProps {
   value?: string;
   label?: string;
   description?: string;
+  icon?: React.ReactNode;
+  type?: SingleChoiceArg<"noIcon">;
+  selected?: SingleBooleanChoiceArg<"selected">;
   className?: string;
 }
 
@@ -130,6 +144,31 @@ function PlasmicMenuItem__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "type",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
+      },
+      {
+        path: "selected",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.selected
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -167,75 +206,108 @@ function PlasmicMenuItem__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        {
+          [sty.rootselected]: hasVariant($state, "selected", "selected"),
+          [sty.roottype_noIcon]: hasVariant($state, "type", "noIcon")
+        }
       )}
       id={args.value}
       plasmicUpdateVariant={updateVariant}
       textValue={args.label}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__jnh4S)}>
-        <BaseText
-          data-plasmic-name={"ariaText"}
-          data-plasmic-override={overrides.ariaText}
-          className={classNames("__wab_instance", sty.ariaText)}
-          slot={"label"}
-        >
-          <div className={classNames(projectcss.all, sty.freeBox__cKeZi)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___8WFIv
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $props.label;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "Item 1";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-          </div>
-        </BaseText>
-        {(() => {
-          try {
-            return $props.description;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return false;
-            }
-            throw e;
-          }
-        })() ? (
-          <BaseText2
-            data-plasmic-name={"ariaDescription"}
-            data-plasmic-override={overrides.ariaDescription}
-            className={classNames("__wab_instance", sty.ariaDescription)}
-            slot={"description"}
+      <div
+        className={classNames(projectcss.all, sty.freeBox__jnh4S, {
+          [sty.freeBoxselected__jnh4SR7EN]: hasVariant(
+            $state,
+            "selected",
+            "selected"
+          ),
+          [sty.freeBoxtype_noIcon__jnh4SKyr9Y]: hasVariant(
+            $state,
+            "type",
+            "noIcon"
+          )
+        })}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__s0JUz)}>
+          {(hasVariant($state, "type", "noIcon") ? false : true)
+            ? renderPlasmicSlot({
+                defaultContents: (
+                  <svg
+                    className={classNames(projectcss.all, sty.svg___183Qn)}
+                    role={"img"}
+                  />
+                ),
+
+                value: args.icon,
+                className: classNames(sty.slotTargetIcon, {
+                  [sty.slotTargetIcontype_noIcon]: hasVariant(
+                    $state,
+                    "type",
+                    "noIcon"
+                  )
+                })
+              })
+            : null}
+          <BaseText
+            data-plasmic-name={"ariaText"}
+            data-plasmic-override={overrides.ariaText}
+            className={classNames("__wab_instance", sty.ariaText, {
+              [sty.ariaTexttype_noIcon]: hasVariant($state, "type", "noIcon")
+            })}
+            slot={"label"}
           >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__ilB1M
-              )}
-            >
-              <React.Fragment>{$props.description}</React.Fragment>
+            <div className={classNames(projectcss.all, sty.freeBox__cKeZi)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___8WFIv,
+                  {
+                    [sty.texttype_noIcon___8WFIvKyr9Y]: hasVariant(
+                      $state,
+                      "type",
+                      "noIcon"
+                    )
+                  }
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.label;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "Item 1";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
             </div>
-          </BaseText2>
-        ) : null}
+          </BaseText>
+        </div>
+        <BaseText2
+          data-plasmic-name={"ariaDescription"}
+          data-plasmic-override={overrides.ariaDescription}
+          className={classNames("__wab_instance", sty.ariaDescription)}
+          slot={"description"}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__ilB1M
+            )}
+          >
+            <React.Fragment>{$props.description}</React.Fragment>
+          </div>
+        </BaseText2>
       </div>
     </BaseListBoxItem>
   ) as React.ReactElement | null;

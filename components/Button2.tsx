@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   PlasmicButton2,
   DefaultButton2Props
-} from "./plasmic/fm_central/PlasmicButton2";
+} from "./plasmic/five_mics_central/PlasmicButton2";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
