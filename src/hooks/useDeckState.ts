@@ -9,7 +9,8 @@
 
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
-import { Card, Deck, DeckCard, DeckRow, DeckCardRow } from '@/lib/types';
+import { Card, Deck, DeckCard, DeckRow, DeckCardRow, DeckStats } from '@/lib/types';
+import { calculateDeckStats } from './useDeckStats';
 
 interface DeckState {
   // State
@@ -17,6 +18,9 @@ interface DeckState {
   deck: Deck;
   /** Last saved version of the deck (for tracking changes) */
   lastSavedDeck: Deck | null;
+
+  /** Calculated statistics for the deck */
+  stats: DeckStats;
 
   // Computed
   /** Whether the deck has unsaved changes */
@@ -49,6 +53,20 @@ interface DeckState {
    */
   setFormat: (format: string) => void;
 
+  /**
+   * Set the deck description
+   */
+  setDescription: (description: string) => void;
+
+  /**
+   * Set the deck visibility
+   */
+  setIsPublic: (isPublic: boolean) => void;
+
+  /**
+   * Set the author name
+   */
+  setAuthorName: (authorName: string) => void;
 
   /**
    * Clear all cards from the deck
@@ -74,6 +92,9 @@ function createEmptyDeck(): Deck {
     id: crypto.randomUUID(),
     user_id: '',
     name: 'Untitled Deck',
+    description: '',
+    is_public: false,
+    author_name: '',
     format: 'standard',
     cards: [],
     created_at: new Date(),
@@ -96,7 +117,14 @@ function cloneDeck(deck: Deck): Deck {
  */
 function decksEqual(a: Deck | null, b: Deck | null): boolean {
   if (!a || !b) return a === b;
-  if (a.name !== b.name || a.format !== b.format) return false;
+  if (
+    a.name !== b.name ||
+    a.format !== b.format ||
+    a.description !== b.description ||
+    a.is_public !== b.is_public ||
+    a.author_name !== b.author_name
+  )
+    return false;
   if (a.cards.length !== b.cards.length) return false;
 
   // Compare cards (order-independent)
@@ -113,12 +141,28 @@ export const useDeckState = create<DeckState>((set, get) => ({
   // Initial state
   deck: createEmptyDeck(),
   lastSavedDeck: null,
+  stats: calculateDeckStats([]),
   hasUnsavedChanges: false,
 
   // Actions
   addCard: (card: Card) => {
     set((state) => {
-      const existingCardIndex = state.deck.cards.findIndex(
+      const { stats, deck } = state;
+      const isArtist = card.type === 'Artist';
+      
+      // Limit to 30 cards total
+      if (stats.totalCards >= 30) {
+        console.warn("Deck limit reached: 30 cards max.");
+        return state;
+      }
+
+      // Limit to 15 Artist cards
+      if (isArtist && stats.artistCount >= 15) {
+        console.warn("Artist limit reached: 15 artists max.");
+        return state;
+      }
+
+      const existingCardIndex = deck.cards.findIndex(
         (c) => c.id === card.id
       );
 
@@ -126,7 +170,7 @@ export const useDeckState = create<DeckState>((set, get) => ({
 
       if (existingCardIndex >= 0) {
         // Card already in deck - increment quantity if under limit
-        const existingCard = state.deck.cards[existingCardIndex];
+        const existingCard = deck.cards[existingCardIndex];
         const maxCopies = card.is_unique ? 1 : 4;
 
         if (existingCard.quantity >= maxCopies) {
@@ -134,7 +178,7 @@ export const useDeckState = create<DeckState>((set, get) => ({
           return state;
         }
 
-        newCards = [...state.deck.cards];
+        newCards = [...deck.cards];
         newCards[existingCardIndex] = {
           ...existingCard,
           quantity: existingCard.quantity + 1,
@@ -147,17 +191,18 @@ export const useDeckState = create<DeckState>((set, get) => ({
           quantity: 1,
           preview_image: card.preview_image
         };
-        newCards = [...state.deck.cards, deckCard];
+        newCards = [...deck.cards, deckCard];
       }
 
       const newDeck = {
-        ...state.deck,
+        ...deck,
         cards: newCards,
         updated_at: new Date(),
       };
 
       return {
         deck: newDeck,
+        stats: calculateDeckStats(newCards),
         hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
       };
     });
@@ -197,6 +242,7 @@ export const useDeckState = create<DeckState>((set, get) => ({
 
       return {
         deck: newDeck,
+        stats: calculateDeckStats(newCards),
         hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
       };
     });
@@ -214,6 +260,7 @@ export const useDeckState = create<DeckState>((set, get) => ({
 
       return {
         deck: newDeck,
+        stats: calculateDeckStats(newCards),
         hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
       };
     });
@@ -249,11 +296,11 @@ export const useDeckState = create<DeckState>((set, get) => ({
     });
   },
 
-  clearDeck: () => {
+  setDescription: (description: string) => {
     set((state) => {
       const newDeck = {
         ...state.deck,
-        cards: [],
+        description,
         updated_at: new Date(),
       };
 
@@ -264,10 +311,57 @@ export const useDeckState = create<DeckState>((set, get) => ({
     });
   },
 
+  setIsPublic: (is_public: boolean) => {
+    set((state) => {
+      const newDeck = {
+        ...state.deck,
+        is_public,
+        updated_at: new Date(),
+      };
+
+      return {
+        deck: newDeck,
+        hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
+      };
+    });
+  },
+
+  setAuthorName: (author_name: string) => {
+    set((state) => {
+      const newDeck = {
+        ...state.deck,
+        author_name,
+        updated_at: new Date(),
+      };
+
+      return {
+        deck: newDeck,
+        hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
+      };
+    });
+  },
+
+  clearDeck: () => {
+    set((state) => {
+      const newDeck = {
+        ...state.deck,
+        cards: [],
+        updated_at: new Date(),
+      };
+
+      return {
+        deck: newDeck,
+        stats: calculateDeckStats([]),
+        hasUnsavedChanges: !decksEqual(newDeck, state.lastSavedDeck),
+      };
+    });
+  },
+
   loadDeck: (deck: Deck) => {
     set({
       deck: cloneDeck(deck),
       lastSavedDeck: cloneDeck(deck),
+      stats: calculateDeckStats(deck.cards),
       hasUnsavedChanges: false,
     });
   },
@@ -290,6 +384,9 @@ export const useDeckState = create<DeckState>((set, get) => ({
         id: deck.id,
         user_id: user.id,
         name: deck.name,
+        description: deck.description || null,
+        is_public: deck.is_public || false,
+        author_name: deck.author_name || user.user_metadata?.full_name || user.email || null,
         format: deck.format,
         updated_at: new Date().toISOString(),
       };

@@ -13,16 +13,16 @@
   justify-self: flex-start;
   border-radius: var(--token-hQPSBqQKLLt7);
 }
-.ariaSwitch[data-disabled]:global(.__wab_instance) {
+.ariaSwitch[data-disabled][data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.5;
 }
-.ariaSwitch[data-readonly]:global(.__wab_instance) {
+.ariaSwitch[data-readonly][data-readonly]:global(.__wab_instance) {
   pointer-events: none;
   cursor: default;
 }
-.ariaSwitch[data-hovered]:global(.__wab_instance) {
+.ariaSwitch[data-hovered][data-hovered]:global(.__wab_instance) {
   background: #d3cdf326;
 }
 .freeBox {

@@ -9,8 +9,10 @@ import {
 import { useDeckState } from '@/hooks/useDeckState';
 import { useCards } from '@/hooks/useCards';
 import { useCardFilters } from '@/hooks/useCardFilters';
-import { useDeckStats } from '@/hooks/useDeckStats';
+import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from '@/router';
 import Card from "./Card";
+import Button from "./Button";
 import PlasmicCardFilterRow from "./plasmic/fm_central/PlasmicCardFilterRow";
 
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
@@ -31,23 +33,147 @@ import IconFilterButton from "./IconFilterButton.tsx";
 // total control over the props for your component.
 export interface DeckBuilderProps extends DefaultDeckBuilderProps {}
 
+import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
+import { Deck, DeckCard as IDeckCard, Card as ICard } from "@/lib/types";
+
 function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
-  const { cards, isLoading } = useCards();
-  const { deck, addCard, removeCard, setDeckName } = useDeckState();
-  const {
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const deckId = searchParams.get("id");
+
+    const FILTER_GROUPS = {
+        types: ["Artist", "Event", "Item"],
+        styles: ["Chill", "Hardcore", "Conscious", "Emo", "Freestyle", "Party"],
+        costs: [0,1,2,3,4,5,6,7,8,9,10]};
+    const { cards, isLoading: cardsLoading } = useCards();
+    const { user } = useAuth();
+    const { 
+        deck, 
+        stats, 
+        hasUnsavedChanges, 
+        lastSavedDeck, 
+        addCard, 
+        removeCard, 
+        saveDeck, 
+        loadDeck, 
+        clearDeck,
+        setDeckName,
+        setDescription,
+        setIsPublic
+    } = useDeckState();
+    const [isSaving, setIsSaving] = React.useState(false);
+    const [isDeckLoading, setIsDeckLoading] = React.useState(false);
+    const [isSaveModalOpen, setIsSaveModalOpen] = React.useState(false);
+
+    // Load deck from ID if present
+    React.useEffect(() => {
+        const fetchAndLoadDeck = async (id: string) => {
+            setIsDeckLoading(true);
+            try {
+                // 1. Fetch deck metadata
+                const { data: deckRow, error: deckError } = await supabase
+                    .from('decks')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
+
+                if (deckError) throw deckError;
+
+                // 2. Fetch deck cards
+                const { data: cardRows, error: cardsError } = await supabase
+                    .from('deck_cards')
+                    .select('*')
+                    .eq('deck_id', id);
+
+                if (cardsError) throw cardsError;
+
+                // 3. Map to full Deck object (wait for cards to be loaded)
+                if (cards.length > 0) {
+                    const deckCards: IDeckCard[] = cardRows.map(row => {
+                        const cardInfo = cards.find(c => c.id === row.card_id);
+                        return {
+                            ...cardInfo!,
+                            quantity: row.quantity
+                        };
+                    }).filter(c => !!c.id);
+
+                    const fullDeck: Deck = {
+                        id: deckRow.id,
+                        user_id: deckRow.user_id,
+                        name: deckRow.name,
+                        description: deckRow.description || "",
+                        is_public: deckRow.is_public || false,
+                        author_name: deckRow.author_name || "",
+                        format: deckRow.format,
+                        cards: deckCards,
+                        created_at: new Date(deckRow.created_at),
+                        updated_at: new Date(deckRow.updated_at)
+                    };
+
+                    loadDeck(fullDeck);
+                }
+            } catch (err: any) {
+                console.error("Failed to load deck:", err.message);
+                alert("Failed to load deck.");
+            } finally {
+                setIsDeckLoading(false);
+            }
+        };
+
+        if (deckId && cards.length > 0) {
+            // Only load if it's not already the current deck or if current deck is empty
+            if (!lastSavedDeck || lastSavedDeck.id !== deckId) {
+                fetchAndLoadDeck(deckId);
+            }
+        } else if (!deckId) {
+            // If no deckId, we might want to clear the deck or leave it as is.
+            // For now, let's keep it as is, or clear it if it was a loaded deck.
+            if (lastSavedDeck) {
+                clearDeck();
+            }
+        }
+    }, [deckId, cards, loadDeck, clearDeck, lastSavedDeck]);
+
+    const handleSaveDeck = async () => {
+        if (!user) {
+            alert("Please log in to save your deck.");
+            navigate("/login");
+            return;
+        }
+        setIsSaveModalOpen(true);
+    };
+
+    const confirmSaveDeck = async () => {
+        setIsSaving(true);
+        try {
+            await saveDeck();
+            setIsSaveModalOpen(false);
+            alert("Deck saved successfully!");
+        } catch (error: any) {
+            alert(`Error saving deck: ${error.message}`);
+        } finally {
+            setIsSaving(false);
+        }
+    };
+    const {
     filters,
     setSearch,
     toggleType,
     toggleStyle,
     toggleCost,
+    toggleKeyword,
+    toggleRarity,
+    toggleSet,
     filteredCards,
     availableTypes,
     availableStyles,
     availableCosts,
-  } = useCardFilters(cards);
-  const stats = useDeckStats(deck.cards);
+    availableKeywords,
+    clearFilters: resetFilters,
+    } = useCardFilters(cards);
 
-  const availableCardsList = React.useMemo(() => {
+    const availableCardsList = React.useMemo(() => {
     return filteredCards
         .filter((card) => !!card.preview_image?.trim())
         .slice(0, 100)
@@ -62,9 +188,10 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
                 onRemove={removeCard}
             />
         ));
-  }, [filteredCards, deck.cards, addCard, removeCard]);
+    }, [filteredCards, deck.cards, addCard, removeCard]);
 
-  const deckCardsList = React.useMemo(() => {
+
+    const deckCardsList = React.useMemo(() => {
     return deck.cards.map((card) => (
         <Card
               key={card.id}
@@ -74,20 +201,30 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
               onRemove={removeCard}
         />
     ));
-  }, [deck.cards, addCard, removeCard]);
+    }, [deck.cards, addCard, removeCard]);
 
-  if (isLoading) {
+    const amountInDeck = stats.totalCards;
+    const totalAmountOfArtists = stats.artistCount;
+
+    if (cardsLoading || isDeckLoading) {
     return (
         <div style={{ padding: '2rem', textAlign: 'center' }}>
-          <h2>Loading cards...</h2>
-          <p>Fetching card data from Supabase</p>
+          <h2>{isDeckLoading ? 'Loading deck...' : 'Loading cards...'}</h2>
+          <p>{isDeckLoading ? 'Fetching your saved deck data' : 'Fetching card data from Supabase'}</p>
         </div>
     );
-  }
-
-  return <PlasmicDeckBuilder
-      root={{ ref }}
-      {...props}
+    }
+    return (
+        <>
+            <PlasmicDeckBuilder
+                root={{ ref}}
+                {...props}
+                saveButton={{
+                    onClick: handleSaveDeck,
+                    isDisabled: isSaving
+                }}
+                currentCardAmount={amountInDeck}
+        currentArtistAmount={totalAmountOfArtists}
       artists={{onClick: () => toggleType("Artist"), selected: filters.types.includes("Artist")}}
       events={{onClick: () => toggleType("Event"), selected: filters.types.includes("Event")}}
       items={{onClick: () => toggleType("Item"), selected: filters.types.includes("Item")}}
@@ -97,7 +234,6 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
       emo={{onClick: () => toggleStyle("Emo"), selected: filters.styles.includes("Freestyle")}}
       freestyle={{onClick: () => toggleStyle("Freestyle"), selected: filters.styles.includes("Emo")}}
       party={{onClick: () => toggleStyle("Party"), selected: filters.styles.includes("Party")}}
-
 
       cost0={{onClick: () => toggleCost(0), selected: filters.costs.includes(0)}}
       cost1={{onClick: () => toggleCost(1), selected: filters.costs.includes(1)}}
@@ -111,7 +247,42 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
       cost9={{onClick: () => toggleCost(9), selected: filters.costs.includes(9)}}
       cost10={{onClick: () => toggleCost(10), selected: filters.costs.includes(10)}}
 
-      added2={{text: 5}}
+      filterPanelCost0={{onClick: () => toggleCost(0), selected: filters.costs.includes(0)}}
+      filterPanelCost1={{onClick: () => toggleCost(1), selected: filters.costs.includes(1)}}
+      filterPanelCost2={{onClick: () => toggleCost(2), selected: filters.costs.includes(2)}}
+      filterPanelCost3={{onClick: () => toggleCost(3), selected: filters.costs.includes(3)}}
+      filterPanelCost4={{onClick: () => toggleCost(4), selected: filters.costs.includes(4)}}
+      filterPanelCost5={{onClick: () => toggleCost(5), selected: filters.costs.includes(5)}}
+      filterPanelCost6={{onClick: () => toggleCost(6), selected: filters.costs.includes(6)}}
+      filterPanelCost7={{onClick: () => toggleCost(7), selected: filters.costs.includes(7)}}
+      filterPanelCost8={{onClick: () => toggleCost(8), selected: filters.costs.includes(8)}}
+      filterPanelCost9={{onClick: () => toggleCost(9), selected: filters.costs.includes(9)}}
+      filterPanelCost10={{onClick: () => toggleCost(10), selected: filters.costs.includes(10)}}
+
+      afterdeath={{onClick: () => toggleKeyword("afterdeath"), selected: filters.keywords.includes("afterdeath")}}
+      cut={{onClick: () => toggleKeyword("cut"), selected: filters.keywords.includes("cut")}}
+      start={{onClick: () => toggleKeyword("start"), selected: filters.keywords.includes("start")}}
+      trap={{onClick: () => toggleKeyword("trap"), selected: filters.keywords.includes("trap")}}
+      ongoing={{onClick: () => toggleKeyword("ongoing"), selected: filters.keywords.includes("ongoing")}}
+      choose={{onClick: () => toggleKeyword("choose"), selected: filters.keywords.includes("choose")}}
+      chooseOne={{onClick: () => toggleKeyword("chooseOne"), selected: filters.keywords.includes("chooseOne")}}
+      erase={{onClick: () => toggleKeyword("erase"), selected: filters.keywords.includes("erase")}}
+      protect={{onClick: () => toggleKeyword("protect"), selected: filters.keywords.includes("protect")}}
+      end={{onClick: () => toggleKeyword("end"), selected: filters.keywords.includes("end")}}
+      invest={{onClick: () => toggleKeyword("invest"), selected: filters.keywords.includes("invest")}}
+      play={{onClick: () => toggleKeyword("play"), selected: filters.keywords.includes("play")}}
+      draw={{onClick: () => toggleKeyword("draw"), selected: filters.keywords.includes("draw")}}
+      reup={{onClick: () => toggleKeyword("reup"), selected: filters.keywords.includes("reup")}}
+      heal={{onClick: () => toggleKeyword("heal"), selected: filters.keywords.includes("heal")}}
+      fly={{onClick: () => toggleKeyword("fly"), selected: filters.keywords.includes("fly")}}
+      //filterPanelRarityCommon={{onClick: () => toggleRarity("common"), selected: filters.rarity.includes("common")}}
+
+      resetButton={{onClick: () => resetFilters()}}
+      
+      saveButton={{
+          onClick: handleSaveDeck,
+          isDisabled: isSaving
+      }}
 
       searchInput={{onChange: (e) =>{
           if(e?.length > 2){
@@ -130,8 +301,100 @@ function DeckBuilder_(props: DeckBuilderProps, ref: HTMLElementRefOf<"div">) {
       }}
 
       cardsInDeck={{ children: deckCardsList }}
+            />
+            {isSaveModalOpen && (
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: 1000,
+                    padding: '20px'
+                }}>
+                    <div style={{
+                        backgroundColor: '#1a1a1a',
+                        padding: '2rem',
+                        borderRadius: '12px',
+                        width: '450px',
+                        maxWidth: '100%',
+                        color: 'white',
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.5)',
+                        border: '1px solid #333'
+                    }}>
+                        <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: 'bold' }}>Save Deck</h2>
+                        
+                        <div style={{ marginBottom: '1rem' }}>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', color: '#aaa' }}>Deck Name</label>
+                            <input 
+                                type="text" 
+                                value={deck.name} 
+                                onChange={(e) => setDeckName(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.75rem',
+                                    backgroundColor: '#2a2a2a',
+                                    border: '1px solid #444',
+                                    borderRadius: '6px',
+                                    color: 'white',
+                                    outline: 'none'
+                                }}
+                            />
+                        </div>
 
-  />;
+                        <div style={{ marginBottom: '1rem' }}>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', color: '#aaa' }}>Description</label>
+                            <textarea 
+                                value={deck.description} 
+                                onChange={(e) => setDescription(e.target.value)}
+                                rows={4}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.75rem',
+                                    backgroundColor: '#2a2a2a',
+                                    border: '1px solid #444',
+                                    borderRadius: '6px',
+                                    color: 'white',
+                                    outline: 'none',
+                                    resize: 'vertical'
+                                }}
+                            />
+                        </div>
+
+                        <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <input 
+                                type="checkbox" 
+                                id="isPublic"
+                                checked={deck.is_public} 
+                                onChange={(e) => setIsPublic(e.target.checked)}
+                                style={{ width: '1.25rem', height: '1.25rem', cursor: 'pointer' }}
+                            />
+                            <label htmlFor="isPublic" style={{ cursor: 'pointer', fontSize: '0.875rem' }}>Public Deck</label>
+                        </div>
+
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+                            <Button 
+                                onClick={() => setIsSaveModalOpen(false)}
+                                color="clear"
+                            >
+                                Cancel
+                            </Button>
+                            <Button 
+                                onClick={confirmSaveDeck}
+                                isDisabled={isSaving || !deck.name.trim()}
+                            >
+                                {isSaving ? "Saving..." : "Save Deck"}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
 
 const DeckBuilder = React.forwardRef(DeckBuilder_);

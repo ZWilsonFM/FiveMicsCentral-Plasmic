@@ -7,6 +7,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { Card } from '@/lib/types';
+import React from "react";
 
 interface UseCardsOptions {
   /** Number of cards to fetch per page */
@@ -71,14 +72,20 @@ export function useCards(options: UseCardsOptions = {}): UseCardsReturn {
 
       const { data, error, count } = await supabase
         .from('Cards')
-        .select('*', { count: 'exact' })
+        .select('*, card_keywords(keywords(slug))', { count: 'exact' })
         .order('id', { ascending: true })
         .range(from, to);
 
       if (error) throw error;
 
+
+      const cards = data.map((card) => ({
+        ...card,
+        keywords: card.card_keywords?.map((ck: any) => ck.keywords.slug) ?? [],
+      })) as Card[];
+
       return {
-        cards: data as Card[],
+        cards,
         nextCursor: to < (count ?? 0) - 1 ? pageParam + 1 : undefined,
         totalCount: count ?? 0,
       };
@@ -92,8 +99,10 @@ export function useCards(options: UseCardsOptions = {}): UseCardsReturn {
   });
 
   // Flatten all pages into a single cards array
-  const cards =
-    data?.pages.flatMap((page) => page.cards) ?? ([] as Card[]);
+  const cards = React.useMemo(
+      () => data?.pages.flatMap((page) => page.cards) ?? ([] as Card[]),
+      [data?.pages] // Only recalculate when data.pages changes
+  );
 
   return {
     cards,

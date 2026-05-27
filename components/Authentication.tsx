@@ -6,42 +6,120 @@ import {
   DefaultAuthenticationProps
 } from "./plasmic/five_mics_central/PlasmicAuthentication";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "@/router";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface AuthenticationProps extends Omit<DefaultAuthenticationProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultAuthenticationProps altogether and have
-// total control over the props for your component.
 export interface AuthenticationProps extends DefaultAuthenticationProps {}
 
 function Authentication_(
   props: AuthenticationProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  // Use PlasmicAuthentication to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicAuthentication are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all AuthenticationProps here, but feel free
-  // to do whatever works for you.
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [isSignUp, setIsSignUp] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const navigate = useNavigate();
+  const { user, isLoading } = useAuth();
 
-  return <PlasmicAuthentication root={{ ref }} {...props} />;
+  React.useEffect(() => {
+    if (!isLoading && user) {
+      navigate("/player-dashboard");
+    }
+  }, [user, isLoading, navigate]);
+
+  const handleEmailAuth = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+        if (error) throw error;
+        
+        if (data.session) {
+          // User was automatically logged in (email confirmation likely disabled)
+          navigate("/player-dashboard");
+        } else {
+          // User needs to confirm email
+          alert("Sign up successful! Please check your email for the confirmation link before logging in.");
+          // Optional: switch back to sign in mode
+          setIsSignUp(false);
+        }
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) {
+          if (error.status === 400) {
+            throw new Error("Invalid login credentials. Please check your email and password.");
+          }
+          throw error;
+        }
+        navigate("/player-dashboard");
+      }
+    } catch (e: any) {
+      setError(e.message);
+      alert(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOAuth = async (provider: 'google' | 'discord') => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: window.location.origin,
+        }
+      });
+      if (error) throw error;
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  return (
+    <PlasmicAuthentication
+      root={{ ref }}
+      {...props}
+      emailInput={{
+        value: email,
+        onChange: (v: string) => setEmail(v),
+        ariaLabel: "Email"
+      }}
+      passwordInput={{
+        value: password,
+        onChange: (v: string) => setPassword(v),
+        ariaLabel: "Password"
+      }}
+      signInButton={{
+        onClick: handleEmailAuth,
+        isDisabled: loading
+      }}
+      signUpButton={{
+        onClick: handleEmailAuth,
+        isDisabled: loading
+      }}
+      googleButton={{
+        onClick: () => handleOAuth('google')
+      }}
+      // Note: Assuming discord button might exist or be added, 
+      // for now I'll just handle google as found in PlasmicAuthentication.tsx
+      signUpSwitch={{
+        onClick: () => setIsSignUp(true)
+      }}
+      signInSwitch={{
+        onClick: () => setIsSignUp(false)
+      }}
+    />
+  );
 }
 
 const Authentication = React.forwardRef(Authentication_);

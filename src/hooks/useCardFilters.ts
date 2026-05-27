@@ -42,6 +42,9 @@ interface UseCardFiltersReturn {
   setSets: (sets: string[]) => void;
   /** Toggle a single set on/off */
   toggleSet: (set: string) => void;
+  setKeywords: (keywords: string[]) => void;
+  toggleKeyword: (keyword: string) => void;
+
   /** Clear all filters */
   clearFilters: () => void;
 
@@ -60,6 +63,8 @@ interface UseCardFiltersReturn {
   availableRarities: string[];
   /** All unique set codes in the card data */
   availableSets: string[];
+
+  availableKeywords: string[];
 }
 
 const INITIAL_FILTERS: CardFilters = {
@@ -70,6 +75,7 @@ const INITIAL_FILTERS: CardFilters = {
   costs: [],
   rarities: [],
   sets: [],
+  keywords: [],
 };
 
 /**
@@ -120,6 +126,11 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
     const costs = new Set<number>();
     const rarities = new Set<string>();
     const sets = new Set<string>();
+    const keywords = new Set<string>();
+
+    cards.forEach((card) => {
+      card.keywords?.forEach((k) => keywords.add(k));
+    });
 
     cards.forEach((card) => {
       types.add(card.type);
@@ -135,6 +146,7 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
       costs: Array.from(costs).sort((a, b) => a - b),
       rarities: Array.from(rarities).sort(),
       sets: Array.from(sets).sort(),
+      keywords: Array.from(keywords).sort()
     };
   }, [cards]);
 
@@ -185,6 +197,12 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
         filters.sets.length > 0 &&
         !filters.sets.includes(card.set_id_code)
       ) {
+        return false;
+      }
+
+      // Keyword filter (OR logic for now)
+      if (filters.keywords.length > 0 &&
+          !filters.keywords.some((k) => card.keywords?.includes(k))) {
         return false;
       }
 
@@ -262,6 +280,19 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
     }));
   }, []);
 
+  const setKeywords = React.useCallback((keywords: string[]) => {
+    setFilters((prev) => ({ ...prev, keywords }));
+  }, []);
+
+  const toggleKeyword = React.useCallback((keyword: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      keywords: prev.keywords.includes(keyword)
+          ? prev.keywords.filter((k) => k !== keyword)
+          : [...prev.keywords, keyword],
+    }));
+  }, []);
+
   const clearFilters = React.useCallback(() => {
     setFilters(INITIAL_FILTERS);
   }, []);
@@ -283,6 +314,8 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
     setSets,
     toggleSet,
     clearFilters,
+    setKeywords,
+    toggleKeyword,
 
     // Results
     filteredCards,
@@ -293,5 +326,6 @@ export function useCardFilters(cards: Card[]): UseCardFiltersReturn {
     availableCosts: availableOptions.costs,
     availableRarities: availableOptions.rarities,
     availableSets: availableOptions.sets,
+    availableKeywords: availableOptions.keywords
   };
 }

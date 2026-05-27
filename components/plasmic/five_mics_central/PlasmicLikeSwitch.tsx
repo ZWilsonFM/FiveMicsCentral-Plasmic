@@ -83,6 +83,7 @@ export type PlasmicLikeSwitch__ArgsType = {
   readOnly?: boolean;
   ariaLabel?: string;
   onChange?: (val: boolean) => void;
+  number?: number;
 };
 type ArgPropType = keyof PlasmicLikeSwitch__ArgsType;
 export const PlasmicLikeSwitch__ArgProps = new Array<ArgPropType>(
@@ -93,7 +94,8 @@ export const PlasmicLikeSwitch__ArgProps = new Array<ArgPropType>(
   "disabled",
   "readOnly",
   "ariaLabel",
-  "onChange"
+  "onChange",
+  "number"
 );
 
 export type PlasmicLikeSwitch__OverridesType = {
@@ -112,6 +114,7 @@ export interface DefaultLikeSwitchProps {
   readOnly?: boolean;
   ariaLabel?: string;
   onChange?: (val: boolean) => void;
+  number?: number;
   className?: string;
 }
 
@@ -132,7 +135,8 @@ function PlasmicLikeSwitch__RenderFunc(props: {
           showLabel: true,
           showDescription: false,
           autoFocus: false,
-          disabled: false
+          disabled: false,
+          number: 0
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -251,7 +255,21 @@ function PlasmicLikeSwitch__RenderFunc(props: {
             sty.text
           )}
         >
-          {"0"}
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.number;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "0";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
         </div>
       </div>
     </BaseSwitch>

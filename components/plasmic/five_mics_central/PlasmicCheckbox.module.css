@@ -14,16 +14,16 @@
   column-gap: var(--token-TehE4cTaM45d);
   min-width: 0;
 }
-.ariaCheckbox[data-disabled]:global(.__wab_instance) {
+.ariaCheckbox[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
-.ariaCheckbox[data-readonly]:global(.__wab_instance) {
+.ariaCheckbox[data-readonly][data-readonly]:global(.__wab_instance) {
   cursor: default;
   pointer-events: none;
 }
-.ariaCheckbox[data-hovered]:global(.__wab_instance) {
+.ariaCheckbox[data-hovered][data-hovered]:global(.__wab_instance) {
   background: none;
   padding: 0px;
 }

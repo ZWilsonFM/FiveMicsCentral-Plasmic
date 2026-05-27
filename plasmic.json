@@ -27675,20 +27675,6 @@
       "cssFilePath": "plasmic/five_mics_central/plasmic.module.css",
       "components": [
         {
-          "id": "ynPLI0crcRcS",
-          "name": "Homepage",
-          "type": "managed",
-          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
-          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicHomepage.tsx",
-          "importSpec": {
-            "modulePath": "Homepage.tsx"
-          },
-          "cssFilePath": "plasmic/five_mics_central/PlasmicHomepage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/"
-        },
-        {
           "id": "6jE3Dsyufpzc",
           "name": "Button",
           "type": "managed",
@@ -28144,6 +28130,126 @@
           "cssFilePath": "plasmic/five_mics_central/PlasmicAccountTab.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "gRGwJyH-pBNO",
+          "name": "MenuBar",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicMenuBar.tsx",
+          "importSpec": {
+            "modulePath": "MenuBar.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicMenuBar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Lk_UJDbXyVr-",
+          "name": "BrDashboard",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicBrDashboard.tsx",
+          "importSpec": {
+            "modulePath": "BrDashboard.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicBrDashboard.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/block-runner"
+        },
+        {
+          "id": "ynPLI0crcRcS",
+          "name": "PlayerDashboard",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicPlayerDashboard.tsx",
+          "importSpec": {
+            "modulePath": "PlayerDashboard.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicPlayerDashboard.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        },
+        {
+          "id": "8suK5OCq8JK7",
+          "name": "Tab",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicTab.tsx",
+          "importSpec": {
+            "modulePath": "Tab.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicTab.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "r0BetZgZ5w5v",
+          "name": "TabGroup",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicTabGroup.tsx",
+          "importSpec": {
+            "modulePath": "TabGroup.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicTabGroup.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "HF8QTPwFIlld",
+          "name": "DeckCard",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicDeckCard.tsx",
+          "importSpec": {
+            "modulePath": "DeckCard.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicDeckCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "nEXqE7drA4qW",
+          "name": "DeckStatus",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicDeckStatus.tsx",
+          "importSpec": {
+            "modulePath": "DeckStatus.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicDeckStatus.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "RL7Ih3k_JGYz",
+          "name": "Collection",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicCollection.tsx",
+          "importSpec": {
+            "modulePath": "Collection.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicCollection.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/collection"
+        },
+        {
+          "id": "xx5ugtjlJcFW",
+          "name": "BuyMissingCards",
+          "type": "managed",
+          "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+          "renderModuleFilePath": "plasmic/five_mics_central/PlasmicBuyMissingCards.tsx",
+          "importSpec": {
+            "modulePath": "BuyMissingCards.tsx"
+          },
+          "cssFilePath": "plasmic/five_mics_central/PlasmicBuyMissingCards.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -28346,6 +28452,31 @@
           "id": "AzJheKTQHQ7Q",
           "name": "ShareIcon",
           "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Share.tsx"
+        },
+        {
+          "id": "6ovPIFJqHajm",
+          "name": "FollowersIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Followers.tsx"
+        },
+        {
+          "id": "tVSPN5C8l_OI",
+          "name": "UpcomingIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Upcoming.tsx"
+        },
+        {
+          "id": "Y0Vh0mj6bext",
+          "name": "LobbyIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Lobby.tsx"
+        },
+        {
+          "id": "QONxgL-Lc4xX",
+          "name": "LeaveIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Leave.tsx"
+        },
+        {
+          "id": "NvFJJgoxR8zA",
+          "name": "SellIcon",
+          "moduleFilePath": "plasmic/five_mics_central/icons/PlasmicIcon__Sell.tsx"
         }
       ],
       "images": [
@@ -28519,7 +28650,7 @@
       "globalContextsFilePath": "plasmic/five_mics_central/PlasmicGlobalContextsProvider.tsx",
       "splitsProviderFilePath": "",
       "styleTokensProviderFilePath": "plasmic/five_mics_central/PlasmicStyleTokensProvider.tsx",
-      "dataTokensFilePath": "",
+      "dataTokensFilePath": "plasmic/five_mics_central/plasmic-data-tokens.ts",
       "projectModuleFilePath": "plasmic/five_mics_central/plasmic.tsx",
       "codeComponents": [
         {

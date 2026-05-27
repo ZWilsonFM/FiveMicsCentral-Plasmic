@@ -23,11 +23,13 @@
 .rooticonText {
   padding-right: 10px;
   padding-left: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }
-.root:hover {
+.root:hover:hover {
   background: var(--token-kFI90AYWY-Ar);
 }
-.rootselected:hover {
+.rootselected:hover:hover {
   background: var(--token-65MH6kL1GxzC);
   outline-color: var(--token-EMs2UJA2a4CJ);
 }

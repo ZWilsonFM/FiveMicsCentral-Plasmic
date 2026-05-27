@@ -6,7 +6,7 @@
   row-gap: var(--token-TpTK_2GoKeuX);
   min-width: 0;
 }
-.ariaComboBox[data-disabled]:global(.__wab_instance) {
+.ariaComboBox[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
@@ -18,9 +18,12 @@
   align-items: stretch;
   justify-content: flex-start;
   background: var(--token-_XLOY8y1n-eS);
-  margin-top: 4px;
+  margin-top: 0px;
   border-radius: var(--token-TehE4cTaM45d);
   border: 1px solid var(--token-kFI90AYWY-Ar);
+}
+.freeBoxtype_noFill {
+  background: none;
 }
 .ariaInput:global(.__wab_instance) {
   box-shadow: none;

@@ -80,11 +80,13 @@ export const PlasmicIconFilterButton__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicIconFilterButton__ArgsType = {
+  onToggle?: (group: string, value: string) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicIconFilterButton__ArgsType;
 export const PlasmicIconFilterButton__ArgProps = new Array<ArgPropType>(
+  "onToggle",
   "children",
   "slot"
 );
@@ -95,6 +97,7 @@ export type PlasmicIconFilterButton__OverridesType = {
 };
 
 export interface DefaultIconFilterButtonProps {
+  onToggle?: (group: string, value: string) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
   selected?: SingleBooleanChoiceArg<"selected">;

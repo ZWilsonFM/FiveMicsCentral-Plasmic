@@ -7,7 +7,7 @@
  */
 export interface Card {
   /** Primary key (int8) */
-  id: number;
+  id: string;
   /** Card name */
   name: string;
   /** Card type (e.g., "Artist", "Item", "Event") */
@@ -38,6 +38,7 @@ export interface Card {
   set_id_code: string;
   /** Card number within the set */
   set_number: number;
+  keywords: string[];  // e.g. ["fly", "afterdeath"]
 
   preview_image: string | undefined;
 }
@@ -65,6 +66,12 @@ export interface Deck {
   format: string;
   /** Cards in the deck with quantities */
   cards: DeckCard[];
+  /** Deck description */
+  description?: string;
+  /** Whether the deck is public */
+  is_public?: boolean;
+  /** Name of the author */
+  author_name?: string;
   /** When the deck was created */
   created_at: Date;
   /** When the deck was last updated */
@@ -111,6 +118,7 @@ export interface CardFilters {
   rarities: string[];
   /** Filter by set codes */
   sets: string[];
+  keywords: string[];  // slugs
 }
 
 /**
@@ -120,6 +128,9 @@ export interface DeckRow {
   id: string;
   user_id: string;
   name: string;
+  description: string | null;
+  is_public: boolean;
+  author_name: string | null;
   format: string;
   created_at: string;
   updated_at: string;

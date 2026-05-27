@@ -77,10 +77,10 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicCombobox__VariantMembers = {
-  type: "soft" | "plain";
+  type: "noFill" | "plain";
 };
 export type PlasmicCombobox__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"noFill" | "plain">;
 };
 type VariantPropType = keyof PlasmicCombobox__VariantsArgs;
 export const PlasmicCombobox__VariantProps = new Array<VariantPropType>("type");
@@ -148,7 +148,7 @@ export interface DefaultComboboxProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
   items?: React.ReactNode;
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"noFill" | "plain">;
   className?: string;
 }
 
@@ -263,8 +263,8 @@ function PlasmicCombobox__RenderFunc(props: {
         styleTokensClassNames,
         sty.ariaComboBox,
         {
-          [sty.ariaComboBoxtype_plain]: hasVariant($state, "type", "plain"),
-          [sty.ariaComboBoxtype_soft]: hasVariant($state, "type", "soft")
+          [sty.ariaComboBoxtype_noFill]: hasVariant($state, "type", "noFill"),
+          [sty.ariaComboBoxtype_plain]: hasVariant($state, "type", "plain")
         }
       )}
       isDisabled={args.disabled}
@@ -302,11 +302,15 @@ function PlasmicCombobox__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox, {
+          [sty.freeBoxtype_noFill]: hasVariant($state, "type", "noFill")
+        })}
       >
         {(() => {
           const child$Props = {
-            className: classNames("__wab_instance", sty.ariaInput),
+            className: classNames("__wab_instance", sty.ariaInput, {
+              [sty.ariaInputtype_noFill]: hasVariant($state, "type", "noFill")
+            }),
             disabled: true,
             onChange: async (...eventArgs: any) => {
               generateStateOnChangePropForCodeComponents(

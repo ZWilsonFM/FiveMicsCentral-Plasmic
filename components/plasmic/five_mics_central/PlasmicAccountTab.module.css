@@ -19,7 +19,7 @@
   height: 40px;
   max-width: 100%;
   column-gap: 8px;
-  background: none;
+  background: var(--token-MCQDM119Y7WI);
   min-width: 0;
   border-radius: var(--token-m_ncsQsYKb7X);
   padding: 8px 12px;
@@ -55,6 +55,9 @@
   max-width: 100%;
   font-family: var(--token-LpPjQKScegqg);
   font-size: var(--token-qCqmumvtKYQR);
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
   min-width: 0;
 }
 .svg__enx63 {

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Open+Sans%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Open+Sans%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700&display=swap");
 
 .plasmic_tokens {
   --token-WpGnNskMseTp: var(--token-OJSN3W0Myvht);
@@ -139,10 +139,16 @@
   --plasmic-token-fm-surface-light: var(--token-zg0CpvHtSPwh);
   --token-qE7yDSx74T9S: #f4f4f5;
   --plasmic-token-fm-background-light: var(--token-qE7yDSx74T9S);
-  --token-3hYDfmVZ1orH: #33a9db;
+  --token-3hYDfmVZ1orH: #5cdfff;
   --plasmic-token-fm-secondary: var(--token-3hYDfmVZ1orH);
   --token-MCQDM119Y7WI: #14172e;
   --plasmic-token-fm-surface-variant: var(--token-MCQDM119Y7WI);
+  --token-rAyGfUnmHX4y: #134f68;
+  --plasmic-token-fm-secondary-variant: var(--token-rAyGfUnmHX4y);
+}
+
+.plasmic_tokens_override.plasmic_tokens_override {
+  --token-hrMucCmuVP2a: #052e1680;
 }
 
 .plasmic_tokens {

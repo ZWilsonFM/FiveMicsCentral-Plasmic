@@ -1,0 +1,42 @@
+.tag {
+  display: inline-flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--token-BpJ5GLD1xIxs);
+  position: relative;
+  column-gap: 4px;
+  border-radius: 100px;
+  padding: 4px 8px;
+}
+.tagdeckStatus__public {
+  background: #16653480;
+  padding-right: 10px;
+  border-radius: var(--token--cbTwI-_-2-d);
+}
+.tagdeckStatus__private {
+  background: #1f293780;
+  padding-right: 10px;
+  border-radius: var(--token--cbTwI-_-2-d);
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: 12px;
+  height: 12px;
+  color: var(--token-v7qmW4z-kvLQ);
+  flex-shrink: 0;
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: var(--token-LpPjQKScegqg);
+  font-weight: 400;
+  font-size: var(--token-qCqmumvtKYQR);
+  min-width: 0;
+}

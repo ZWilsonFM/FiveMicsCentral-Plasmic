@@ -1,0 +1,74 @@
+.buyMissingCards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  background: var(--token-rAyGfUnmHX4y);
+  outline-width: 2px;
+  outline-offset: -2px;
+  outline-style: solid;
+  outline-color: var(--token-3hYDfmVZ1orH);
+  min-width: 0;
+  border-radius: var(--token-hQPSBqQKLLt7);
+  padding: 12px;
+}
+.buyMissingCards:hover:hover {
+  animation: pulse0DlLe3ZmR0Lr 0.5s ease 0s 1 normal none running;
+  background: #1b607c;
+}
+.text___58Dg7 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-v7qmW4z-kvLQ);
+  font-family: var(--token-LpPjQKScegqg);
+  font-weight: 500;
+  font-size: var(--token-qCqmumvtKYQR);
+  text-align: center;
+  min-width: 0;
+}
+.missing {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-3hYDfmVZ1orH);
+  font-family: var(--token-LpPjQKScegqg);
+  font-weight: 600;
+  text-align: center;
+  font-size: 24px;
+  min-width: 0;
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-top: 4px;
+  column-gap: 4px;
+  min-width: 0;
+}
+.text___0I1Vx {
+  width: auto;
+  height: 16px;
+  max-width: 100%;
+  color: var(--token-v7qmW4z-kvLQ);
+  font-family: var(--token-LpPjQKScegqg);
+  font-weight: 500;
+  font-size: var(--token-qCqmumvtKYQR);
+  text-align: center;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-v7qmW4z-kvLQ);
+  height: 1em;
+}

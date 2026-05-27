@@ -247,7 +247,10 @@ function PlasmicSelect__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.ariaSelect,
-        { [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft") }
+        {
+          [sty.ariaSelecttype_plain]: hasVariant($state, "type", "plain"),
+          [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft")
+        }
       )}
       isDisabled={args.disabled}
       isOpen={generateStateValueProp($state, ["ariaSelect", "isOpen"])}

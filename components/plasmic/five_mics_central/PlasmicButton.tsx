@@ -76,6 +76,7 @@ export type PlasmicButton__VariantMembers = {
     | "success"
     | "warning"
     | "errorDestructive"
+    | "blue"
     | "white";
   type: "soft" | "bordered" | "noFill";
   size: "extraSmall" | "small" | "large" | "extraLarge";
@@ -88,7 +89,13 @@ export type PlasmicButton__VariantMembers = {
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "blue"
+    | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered" | "noFill">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -157,7 +164,13 @@ export interface DefaultButtonProps {
   label?: React.ReactNode;
   end?: React.ReactNode;
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "blue"
+    | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered" | "noFill">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -308,6 +321,7 @@ function PlasmicButton__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootcolor_blue]: hasVariant($state, "color", "blue"),
           [sty.rootcolor_errorDestructive]: hasVariant(
             $state,
             "color",
@@ -574,6 +588,11 @@ function PlasmicButton__RenderFunc(props: {
           [sty.freeBoxcolor_success_type_bordered__mneVf1PLrXkNoo]:
             hasVariant($state, "color", "success") &&
             hasVariant($state, "type", "bordered"),
+          [sty.freeBoxcolor_white__mneVfQfzNa]: hasVariant(
+            $state,
+            "color",
+            "white"
+          ),
           [sty.freeBoxiconStart_color_errorDestructive_type_noFill__mneVf8TQvrCtzqyQQwB]:
             hasVariant($state, "iconStart", "iconStart") &&
             hasVariant($state, "color", "errorDestructive") &&
@@ -778,6 +797,11 @@ function PlasmicButton__RenderFunc(props: {
               ),
               value: args.label,
               className: classNames(sty.slotTargetLabel, {
+                [sty.slotTargetLabelcolor_blue]: hasVariant(
+                  $state,
+                  "color",
+                  "blue"
+                ),
                 [sty.slotTargetLabelcolor_errorDestructive]: hasVariant(
                   $state,
                   "color",
@@ -830,11 +854,6 @@ function PlasmicButton__RenderFunc(props: {
                 [sty.slotTargetLabelcolor_warning_type_soft]:
                   hasVariant($state, "color", "warning") &&
                   hasVariant($state, "type", "soft"),
-                [sty.slotTargetLabelcolor_white]: hasVariant(
-                  $state,
-                  "color",
-                  "white"
-                ),
                 [sty.slotTargetLabeliconEnd]: hasVariant(
                   $state,
                   "iconEnd",

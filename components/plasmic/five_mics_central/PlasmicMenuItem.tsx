@@ -70,16 +70,16 @@ createPlasmicElementProxy;
 
 export type PlasmicMenuItem__VariantMembers = {
   type: "noIcon";
-  selected: "selected";
+  active: "active";
 };
 export type PlasmicMenuItem__VariantsArgs = {
   type?: SingleChoiceArg<"noIcon">;
-  selected?: SingleBooleanChoiceArg<"selected">;
+  active?: SingleBooleanChoiceArg<"active">;
 };
 type VariantPropType = keyof PlasmicMenuItem__VariantsArgs;
 export const PlasmicMenuItem__VariantProps = new Array<VariantPropType>(
   "type",
-  "selected"
+  "active"
 );
 
 export type PlasmicMenuItem__ArgsType = {
@@ -108,7 +108,7 @@ export interface DefaultMenuItemProps {
   description?: string;
   icon?: React.ReactNode;
   type?: SingleChoiceArg<"noIcon">;
-  selected?: SingleBooleanChoiceArg<"selected">;
+  active?: SingleBooleanChoiceArg<"active">;
   className?: string;
 }
 
@@ -154,10 +154,10 @@ function PlasmicMenuItem__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
       },
       {
-        path: "selected",
+        path: "active",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.selected
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.active
       }
     ],
     [$props, $ctx, $refs]
@@ -208,7 +208,7 @@ function PlasmicMenuItem__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
-          [sty.rootselected]: hasVariant($state, "selected", "selected"),
+          [sty.rootactive]: hasVariant($state, "active", "active"),
           [sty.roottype_noIcon]: hasVariant($state, "type", "noIcon")
         }
       )}
@@ -218,10 +218,10 @@ function PlasmicMenuItem__RenderFunc(props: {
     >
       <div
         className={classNames(projectcss.all, sty.freeBox__jnh4S, {
-          [sty.freeBoxselected__jnh4SR7EN]: hasVariant(
+          [sty.freeBoxactive__jnh4SHgAnY]: hasVariant(
             $state,
-            "selected",
-            "selected"
+            "active",
+            "active"
           ),
           [sty.freeBoxtype_noIcon__jnh4SKyr9Y]: hasVariant(
             $state,
@@ -254,6 +254,7 @@ function PlasmicMenuItem__RenderFunc(props: {
             data-plasmic-name={"ariaText"}
             data-plasmic-override={overrides.ariaText}
             className={classNames("__wab_instance", sty.ariaText, {
+              [sty.ariaTextactive]: hasVariant($state, "active", "active"),
               [sty.ariaTexttype_noIcon]: hasVariant($state, "type", "noIcon")
             })}
             slot={"label"}
@@ -265,6 +266,11 @@ function PlasmicMenuItem__RenderFunc(props: {
                   projectcss.__wab_text,
                   sty.text___8WFIv,
                   {
+                    [sty.textactive___8WFIvHgAnY]: hasVariant(
+                      $state,
+                      "active",
+                      "active"
+                    ),
                     [sty.texttype_noIcon___8WFIvKyr9Y]: hasVariant(
                       $state,
                       "type",

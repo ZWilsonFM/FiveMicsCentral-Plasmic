@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: 0px;
+  position: relative;
+  background: var(--token-_XLOY8y1n-eS);
+  min-width: 0;
+  border-radius: 100px;
+  padding: 3px 4px;
+  border: 1px solid var(--token-AqOCY_C21mcv);
+}
+.tab:global(.__wab_instance) {
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}

@@ -630,45 +630,57 @@ function PlasmicTextField__RenderFunc(props: {
             value={generateStateValueProp($state, ["textInput", "value"])}
           />
         ) : null}
-        {(hasVariant($state, "multiLine", "multiLine") ? true : false) ? (
-          <TextAreaInput
-            data-plasmic-name={"textAreaInput"}
-            data-plasmic-override={overrides.textAreaInput}
-            className={classNames("__wab_instance", {
-              [sty.textAreaInputmultiLine]: hasVariant(
-                $state,
-                "multiLine",
-                "multiLine"
-              )
-            })}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "textAreaInput",
-                "value"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            padded={
+        <TextAreaInput
+          data-plasmic-name={"textAreaInput"}
+          data-plasmic-override={overrides.textAreaInput}
+          className={classNames("__wab_instance", sty.textAreaInput, {
+            [sty.textAreaInputiconEnd]: hasVariant(
+              $state,
+              "iconEnd",
+              "iconEnd"
+            ),
+            [sty.textAreaInputiconStart]: hasVariant(
+              $state,
+              "iconStart",
+              "iconStart"
+            ),
+            [sty.textAreaInputiconStart_iconEnd]:
               hasVariant($state, "iconStart", "iconStart") &&
-              hasVariant($state, "iconEnd", "iconEnd")
-                ? ["right", "left"]
-                : hasVariant($state, "iconEnd", "iconEnd")
-                  ? ["right"]
-                  : hasVariant($state, "iconStart", "iconStart")
-                    ? ["left"]
-                    : undefined
+              hasVariant($state, "iconEnd", "iconEnd"),
+            [sty.textAreaInputmultiLine]: hasVariant(
+              $state,
+              "multiLine",
+              "multiLine"
+            )
+          })}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["textAreaInput", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
             }
-            placeholder={args.placeholder}
-            value={generateStateValueProp($state, ["textAreaInput", "value"])}
-          />
-        ) : null}
+          }}
+          padded={
+            hasVariant($state, "iconStart", "iconStart") &&
+            hasVariant($state, "iconEnd", "iconEnd")
+              ? ["right", "left"]
+              : hasVariant($state, "iconEnd", "iconEnd")
+                ? ["right"]
+                : hasVariant($state, "iconStart", "iconStart")
+                  ? ["left"]
+                  : undefined
+          }
+          placeholder={args.placeholder}
+          value={generateStateValueProp($state, ["textAreaInput", "value"])}
+        />
+
         <div
           className={classNames(projectcss.all, sty.freeBox__dg0Ip, {
             [sty.freeBoxiconEnd__dg0Ipbqu9K]: hasVariant(

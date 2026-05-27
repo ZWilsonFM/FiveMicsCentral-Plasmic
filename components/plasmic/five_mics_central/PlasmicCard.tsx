@@ -66,41 +66,52 @@ import sty from "./PlasmicCard.module.css"; // plasmic-import: 7-kwLa9CoL-9/css
 
 import SearchIcon from "./icons/PlasmicIcon__Search"; // plasmic-import: jws_5ubnFgf7/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: gXJpv5gh0fGI/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: qeEPMvkO-Vjm/icon
 import MinusIcon from "./icons/PlasmicIcon__Minus"; // plasmic-import: f8iR-AOO6IyV/icon
 import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: Qyo9pDfJqX78/icon
 
 createPlasmicElementProxy;
 
 export type PlasmicCard__VariantMembers = {
-  large: "large";
+  grayScale: "grayScale";
+  showPrice: "showPrice";
+  listView: "listView";
 };
 export type PlasmicCard__VariantsArgs = {
-  large?: SingleBooleanChoiceArg<"large">;
+  grayScale?: SingleBooleanChoiceArg<"grayScale">;
+  showPrice?: SingleBooleanChoiceArg<"showPrice">;
+  listView?: SingleBooleanChoiceArg<"listView">;
 };
 type VariantPropType = keyof PlasmicCard__VariantsArgs;
-export const PlasmicCard__VariantProps = new Array<VariantPropType>("large");
+export const PlasmicCard__VariantProps = new Array<VariantPropType>(
+  "grayScale",
+  "showPrice",
+  "listView"
+);
 
 export type PlasmicCard__ArgsType = {
   image?: React.ReactNode;
   currentAmountInDeck?: number;
   previewImageUrl?: string;
   isUnique?: boolean;
+  buyButtonLink?: string;
 };
 type ArgPropType = keyof PlasmicCard__ArgsType;
 export const PlasmicCard__ArgProps = new Array<ArgPropType>(
   "image",
   "currentAmountInDeck",
   "previewImageUrl",
-  "isUnique"
+  "isUnique",
+  "buyButtonLink"
 );
 
 export type PlasmicCard__OverridesType = {
   root?: Flex__<"div">;
   card?: Flex__<"div">;
-  hover?: Flex__<"div">;
-  shadow?: Flex__<"div">;
-  inspectButton?: Flex__<typeof Button>;
   previewImg?: Flex__<typeof PlasmicImg__>;
+  inspectButton?: Flex__<typeof Button>;
+  button?: Flex__<typeof Button>;
+  text?: Flex__<"div">;
   amountEdit?: Flex__<"div">;
   minusButton?: Flex__<typeof Button>;
   added?: Flex__<"div">;
@@ -114,7 +125,10 @@ export interface DefaultCardProps {
   currentAmountInDeck?: number;
   previewImageUrl?: string;
   isUnique?: boolean;
-  large?: SingleBooleanChoiceArg<"large">;
+  buyButtonLink?: string;
+  grayScale?: SingleBooleanChoiceArg<"grayScale">;
+  showPrice?: SingleBooleanChoiceArg<"showPrice">;
+  listView?: SingleBooleanChoiceArg<"listView">;
   className?: string;
 }
 
@@ -156,10 +170,22 @@ function PlasmicCard__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "large",
+        path: "grayScale",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.large
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.grayScale
+      },
+      {
+        path: "showPrice",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.showPrice
+      },
+      {
+        path: "listView",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.listView
       }
     ],
     [$props, $ctx, $refs]
@@ -192,7 +218,10 @@ function PlasmicCard__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.root,
-        { [sty.rootlarge]: hasVariant($state, "large", "large") }
+        {
+          [sty.rootgrayScale]: hasVariant($state, "grayScale", "grayScale"),
+          [sty.rootlistView]: hasVariant($state, "listView", "listView")
+        }
       )}
       data-plasmic-trigger-props={[triggerRootHoverProps]}
     >
@@ -200,7 +229,7 @@ function PlasmicCard__RenderFunc(props: {
         data-plasmic-name={"card"}
         data-plasmic-override={overrides.card}
         className={classNames(projectcss.all, sty.card, {
-          [sty.cardlarge]: hasVariant($state, "large", "large")
+          [sty.cardlistView]: hasVariant($state, "listView", "listView")
         })}
       >
         {false
@@ -209,44 +238,27 @@ function PlasmicCard__RenderFunc(props: {
               value: args.image
             })
           : null}
-        <div
-          data-plasmic-name={"hover"}
-          data-plasmic-override={overrides.hover}
-          className={classNames(projectcss.all, sty.hover, {
-            [sty.hoverlarge]: hasVariant($state, "large", "large")
-          })}
-        >
-          <div
-            data-plasmic-name={"shadow"}
-            data-plasmic-override={overrides.shadow}
-            className={classNames(projectcss.all, sty.shadow, {
-              [sty.shadowlarge]: hasVariant($state, "large", "large")
-            })}
-          />
-
-          <Button
-            data-plasmic-name={"inspectButton"}
-            data-plasmic-override={overrides.inspectButton}
-            className={classNames("__wab_instance", sty.inspectButton, {
-              [sty.inspectButtonlarge]: hasVariant($state, "large", "large")
-            })}
-            disabled={false}
-            iconOnly={true}
-            roundedFull={true}
-            start={
-              <SearchIcon
-                className={classNames(projectcss.all, sty.svg___73ZaR)}
-                role={"img"}
-              />
-            }
-            type={"bordered"}
-          />
-        </div>
         <PlasmicImg__
           data-plasmic-name={"previewImg"}
           data-plasmic-override={overrides.previewImg}
           alt={""}
-          className={classNames(sty.previewImg)}
+          className={classNames(sty.previewImg, {
+            [sty.previewImggrayScale]: hasVariant(
+              $state,
+              "grayScale",
+              "grayScale"
+            ),
+            [sty.previewImglistView]: hasVariant(
+              $state,
+              "listView",
+              "listView"
+            ),
+            [sty.previewImgshowPrice]: hasVariant(
+              $state,
+              "showPrice",
+              "showPrice"
+            )
+          })}
           displayHeight={"100%"}
           displayMaxHeight={"none"}
           displayMaxWidth={"none"}
@@ -271,6 +283,78 @@ function PlasmicCard__RenderFunc(props: {
               throw e;
             }
           })()}
+        />
+
+        <Button
+          data-plasmic-name={"inspectButton"}
+          data-plasmic-override={overrides.inspectButton}
+          className={classNames("__wab_instance", sty.inspectButton, {
+            [sty.inspectButtongrayScale]: hasVariant(
+              $state,
+              "grayScale",
+              "grayScale"
+            )
+          })}
+          disabled={false}
+          iconOnly={true}
+          roundedFull={true}
+          start={
+            <SearchIcon
+              className={classNames(projectcss.all, sty.svg___73ZaR)}
+              role={"img"}
+            />
+          }
+          type={"bordered"}
+        />
+
+        <Button
+          data-plasmic-name={"button"}
+          data-plasmic-override={overrides.button}
+          className={classNames("__wab_instance", sty.button)}
+          color={"blue"}
+          iconEnd={true}
+          label={
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text
+              )}
+            >
+              {"$4.50"}
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToPage"] = true
+              ? (() => {
+                  const actionArgs = { destination: $props.buyButtonLink };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      location.assign(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToPage"] != null &&
+              typeof $steps["goToPage"] === "object" &&
+              typeof $steps["goToPage"].then === "function"
+            ) {
+              $steps["goToPage"] = await $steps["goToPage"];
+            }
+          }}
+          size={"small"}
         />
       </div>
       <div
@@ -363,6 +447,7 @@ function PlasmicCard__RenderFunc(props: {
           data-plasmic-name={"plusButton"}
           data-plasmic-override={overrides.plusButton}
           className={classNames("__wab_instance", sty.plusButton)}
+          color={"muted"}
           disabled={(() => {
             try {
               return (
@@ -401,10 +486,10 @@ const PlasmicDescendants = {
   root: [
     "root",
     "card",
-    "hover",
-    "shadow",
-    "inspectButton",
     "previewImg",
+    "inspectButton",
+    "button",
+    "text",
     "amountEdit",
     "minusButton",
     "added",
@@ -412,11 +497,11 @@ const PlasmicDescendants = {
     "max",
     "plusButton"
   ],
-  card: ["card", "hover", "shadow", "inspectButton", "previewImg"],
-  hover: ["hover", "shadow", "inspectButton"],
-  shadow: ["shadow"],
-  inspectButton: ["inspectButton"],
+  card: ["card", "previewImg", "inspectButton", "button", "text"],
   previewImg: ["previewImg"],
+  inspectButton: ["inspectButton"],
+  button: ["button", "text"],
+  text: ["text"],
   amountEdit: ["amountEdit", "minusButton", "added", "_", "max", "plusButton"],
   minusButton: ["minusButton"],
   added: ["added"],
@@ -430,10 +515,10 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   card: "div";
-  hover: "div";
-  shadow: "div";
-  inspectButton: typeof Button;
   previewImg: typeof PlasmicImg__;
+  inspectButton: typeof Button;
+  button: typeof Button;
+  text: "div";
   amountEdit: "div";
   minusButton: typeof Button;
   added: "div";
@@ -505,10 +590,10 @@ export const PlasmicCard = Object.assign(
   {
     // Helper components rendering sub-elements
     card: makeNodeComponent("card"),
-    hover: makeNodeComponent("hover"),
-    shadow: makeNodeComponent("shadow"),
-    inspectButton: makeNodeComponent("inspectButton"),
     previewImg: makeNodeComponent("previewImg"),
+    inspectButton: makeNodeComponent("inspectButton"),
+    button: makeNodeComponent("button"),
+    text: makeNodeComponent("text"),
     amountEdit: makeNodeComponent("amountEdit"),
     minusButton: makeNodeComponent("minusButton"),
     added: makeNodeComponent("added"),

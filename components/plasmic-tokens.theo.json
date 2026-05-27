@@ -743,11 +743,21 @@
     {
       "name": "FM/Secondary",
       "type": "color",
-      "value": "#33A9DB",
+      "value": "#5CDFFF",
       "category": "color",
       "meta": {
         "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
         "id": "3hYDfmVZ1orH"
+      }
+    },
+    {
+      "name": "FM/Secondary-Variant",
+      "type": "color",
+      "value": "#134F68",
+      "category": "color",
+      "meta": {
+        "projectId": "jSxoiQqAMnTEnPC4J2Lddc",
+        "id": "rAyGfUnmHX4y"
       }
     },
     {

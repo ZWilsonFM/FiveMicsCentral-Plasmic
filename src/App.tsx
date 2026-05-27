@@ -1,6 +1,7 @@
 import { Routes } from '@generouted/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import GlobalContextsProvider from '../components/plasmic/fm_central/PlasmicGlobalContextsProvider';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -15,9 +16,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <GlobalContextsProvider>
-        <Routes />
-      </GlobalContextsProvider>
+      <AuthProvider>
+        <GlobalContextsProvider>
+          <Routes />
+        </GlobalContextsProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

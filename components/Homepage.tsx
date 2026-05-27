@@ -38,7 +38,15 @@ function Homepage_(props: HomepageProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all HomepageProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicHomepage root={{ ref }} {...props} />;
+  return (
+    <PlasmicHomepage
+      root={{ ref }}
+      {...props}
+      userId={{
+        ariaLabel: "User ID"
+      }}
+    />
+  );
 }
 
 const Homepage = React.forwardRef(Homepage_);
